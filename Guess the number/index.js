@@ -38,3 +38,32 @@ againBtn.addEventListener('click', function () {
 
   console.log(highScore, displayedHighScore.textContent)
 })
+
+checkBtn.addEventListener('click', function () {
+  const guessedNumber = Number(document.querySelector('.guess').value)
+  if (!guessedNumber) {
+    displayMessage(`You didn't enter any number`)
+  } else if (guessedNumber < 0 || guessedNumber > 20) {
+    displayMessage(`Choose a number between 1 and 20`)
+  } else if (guessedNumber !== generatedNumber) {
+    if (score > 1) {
+      displayMessage(
+        guessedNumber < generatedNumber ? `📉Too low` : `📈Too high`
+      )
+      score--
+    } else {
+      displayMessage(`💥You lost the game`)
+      score = 0
+    }
+  } else {
+    displayMessage(`That's correct!`)
+    if (score > highScore) {
+      highScore = score
+    }
+    displayedHighScore.textContent = highScore
+    document.querySelector('.number').textContent = generatedNumber
+    document.querySelector('body').style.backgroundColor = '#60b347'
+    document.querySelector('.number').style.width = '30rem'
+  }
+  displayedScore.textContent = score
+})
