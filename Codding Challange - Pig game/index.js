@@ -73,4 +73,32 @@ function init() {
     }
   })
   
-
+  btnHold.addEventListener('click', function () {
+    if (playing) {
+      // 1. Add current score of the active player
+      scores[activePlayer] += currentScore
+      document.getElementById(`score--${activePlayer}`).textContent =
+        scores[activePlayer]
+  
+      // 2. Check if the player's score is >=100
+      if (scores[activePlayer] >= 100) {
+        // Finish game
+        playing = false
+        document
+          .querySelector(`.player--${activePlayer}`)
+          .classList.add('player--winner')
+        document
+          .querySelector(`.player--${activePlayer}`)
+          .classList.remove(`player--active`)
+        diceEl.classList.add(`hidden`)
+      } else {
+        // Switch to the next player
+        switchPlayer()
+      }
+    }
+  })
+  
+  btnNew.addEventListener('click', init)
+  
+  // UPDATES:
+  // 1. Game itself will randomly choose who will be the first player after every game
