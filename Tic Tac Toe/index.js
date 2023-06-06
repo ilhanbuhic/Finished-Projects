@@ -39,3 +39,17 @@ const addingIcons = function () {
 }
 
 addingIcons()
+
+const checkWinningCondition = function (player) {
+  for (const sequence of winningSequence) {
+    const [a, b, c] = sequence
+    if (
+      sequence[a].querySelector('img')?.alt === player &&
+      sequence[b].querySelector('img')?.alt === player &&
+      sequence[c].querySelector('img')?.alt === player
+    ) {
+      return true
+    }
+  }
+  return false
+}
