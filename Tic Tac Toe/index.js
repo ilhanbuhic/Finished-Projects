@@ -15,41 +15,91 @@ const winningSequence = [
 ]
 
 let currentPlayer = 'X'
+let gameEnded = false // Track if the game has ended
 
-const grid = document.querySelectorAll(' div')
-
-const imgO = document.createElement('img')
-imgO.src = './images/o-icon.png'
-
-const addingIcons = function () {
-  for (let i = 1; i < grid.length; i++) {
-    const imgX = document.createElement('img')
-    imgX.src = './images/x-icon.jpg'
-    imgX.alt = 'X'
-
-    grid[i].addEventListener('click', function () {
-      if (!grid[i].querySelector('img')) {
-        grid[i].appendChild(imgX)
-        if (checkWinningCondition(currentPlayer)) {
-          alert(`Player ${currentPlayer} wins`)
-        }
-      }
-    })
-  }
+const switchPlayer = function () {
+  currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
 }
 
-addingIcons()
+const grid = document.querySelectorAll('div')
 
-const checkWinningCondition = function (player) {
+grid.forEach(function (gridEl) {
+  gridEl.addEventListener('click', function () {
+    if (!gridEl.textContent && !gameEnded) {
+      gridEl.textContent = currentPlayer
+      if (checkWinner(currentPlayer)) {
+        alert(`Player ${currentPlayer} wins`)
+        gameEnded = true
+      } else if (checkDraw()) {
+        alert(`It's a draw`)
+        gameEnded = true
+      } else {
+        switchPlayer()
+      }
+    }
+  })
+})
+
+const checkWinner = function (player) {
   for (const sequence of winningSequence) {
     const [a, b, c] = sequence
     if (
-      sequence[a].querySelector('img')?.alt === player &&
-      sequence[b].querySelector('img')?.alt === player &&
-      sequence[c].querySelector('img')?.alt === player
+      grid[a].textContent === player &&
+      grid[b].textContent === player &&
+      grid[c].textContent === player
     ) {
       return true
     }
   }
   return false
 }
+
+const checkDraw = function () {
+  for (const gridElement of grid) {
+    if (!gridElement.textContent) return false
+  }
+  return true
+}
+
+const resetGame = function () {
+  grid.forEach(function (gridEl) {
+    gridEl.textContent = ''
+  })
+  currentPlayer = 'X'
+  gameEnded = false
+}
+
+//_______________________________________________________//
+
+// const checkWinner = function (player) {
+//   for (const sequence of winningSequence) {
+//     const [a, b, c] = sequence
+//     console.log(document.querySelector('img'))
+//   }
+// }
+
+// const imgO = document.createElement('img')
+// imgO.src = './images/o-icon.png'
+
+// const checkWinner = function (player) {
+//   for (const sequence of winningSequence) {
+//     const [a, b, c] = sequence
+//     console.log(document.querySelector('img'))
+//   }
+// }
+
+// const addingIcons = function () {
+//   for (let i = 1; i < grid.length; i++) {
+//     const imgX = document.createElement('img')
+//     imgX.src = './images/x-icon.jpg'
+//     imgX.alt = 'X'
+
+//     grid[i].addEventListener('click', function () {
+//       if (!grid[i].querySelector('img')) {
+//         grid[i].appendChild(imgX)
+//         checkWinner()
+//       }
+//     })
+//   }
+// }
+// addingIcons()
