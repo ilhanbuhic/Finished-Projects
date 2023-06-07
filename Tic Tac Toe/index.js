@@ -23,7 +23,7 @@ const switchPlayer = function () {
 
 const grid = document.querySelectorAll('.grid > div')
 
-grid.forEach(function (gridEl, index) {
+grid.forEach(function (gridEl) {
   gridEl.addEventListener('click', function () {
     if (!gridEl.textContent && !gameEnded) {
       gridEl.textContent = currentPlayer
