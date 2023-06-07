@@ -21,9 +21,9 @@ const switchPlayer = function () {
   currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
 }
 
-const grid = document.querySelectorAll('div')
+const grid = document.querySelectorAll('.grid > div')
 
-grid.forEach(function (gridEl) {
+grid.forEach(function (gridEl, index) {
   gridEl.addEventListener('click', function () {
     if (!gridEl.textContent && !gameEnded) {
       gridEl.textContent = currentPlayer
@@ -68,38 +68,58 @@ const resetGame = function () {
   currentPlayer = 'X'
   gameEnded = false
 }
+// -------------------------- OLD CODE - DOESN'T WORK PERFECTLY --------------------------
+// let currentPlayer = 'X'
+// let gameEnded = false // Track if the game has ended
 
-//_______________________________________________________//
-
-// const checkWinner = function (player) {
-//   for (const sequence of winningSequence) {
-//     const [a, b, c] = sequence
-//     console.log(document.querySelector('img'))
-//   }
+// const switchPlayer = function () {
+//   currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
 // }
 
-// const imgO = document.createElement('img')
-// imgO.src = './images/o-icon.png'
+// const grid = document.querySelectorAll('div')
 
-// const checkWinner = function (player) {
-//   for (const sequence of winningSequence) {
-//     const [a, b, c] = sequence
-//     console.log(document.querySelector('img'))
-//   }
-// }
-
-// const addingIcons = function () {
-//   for (let i = 1; i < grid.length; i++) {
-//     const imgX = document.createElement('img')
-//     imgX.src = './images/x-icon.jpg'
-//     imgX.alt = 'X'
-
-//     grid[i].addEventListener('click', function () {
-//       if (!grid[i].querySelector('img')) {
-//         grid[i].appendChild(imgX)
-//         checkWinner()
+// grid.forEach(function (gridEl) {
+//   gridEl.addEventListener('click', function () {
+//     if (!gridEl.textContent && !gameEnded) {
+//       gridEl.textContent = currentPlayer
+//       if (checkWinner(currentPlayer)) {
+//         alert(`Player ${currentPlayer} wins`)
+//         gameEnded = true
+//       } else if (checkDraw()) {
+//         alert(`It's a draw`)
+//         gameEnded = true
+//       } else {
+//         switchPlayer()
 //       }
-//     })
+//     }
+//   })
+// })
+
+// const checkWinner = function (player) {
+//   for (const sequence of winningSequence) {
+//     const [a, b, c] = sequence
+//     if (
+//       grid[a].textContent === player &&
+//       grid[b].textContent === player &&
+//       grid[c].textContent === player
+//     ) {
+//       return true
+//     }
 //   }
+//   return false
 // }
-// addingIcons()
+
+// const checkDraw = function () {
+//   for (const gridElement of grid) {
+//     if (!gridElement.textContent) return false
+//   }
+//   return true
+// }
+
+// const resetGame = function () {
+//   grid.forEach(function (gridEl) {
+//     gridEl.textContent = ''
+//   })
+//   currentPlayer = 'X'
+//   gameEnded = false
+// }
