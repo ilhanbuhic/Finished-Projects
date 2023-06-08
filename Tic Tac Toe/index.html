@@ -9,17 +9,36 @@
   </head>
   <body>
     <main>
-      <div class="grid">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div class="players">
+        <div class="player1">
+          <h1 class="player1--name">Name:</h1>
+          <img src="./images/player-picture.png" alt="player-picture" />
+          <p class="player1--score">Score: 0</p>
+        </div>
+        <div class="player2">
+          <h1 class="player1--name">Name:</h1>
+          <img src="./images/player-picture.png" alt="player-picture" />
+          <p class="player2--score">Score: 0</p>
+        </div>
       </div>
+      <div class="game">
+        <div class="grid">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div class="modal hidden">
+        <p class="modalP"></p>
+        <button class="restartBtn">Restart</button>
+      </div>
+      <div class="overlay hidden"></div>
     </main>
     <script src="index.js"></script>
   </body>

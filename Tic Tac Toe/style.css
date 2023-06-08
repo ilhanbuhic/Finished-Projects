@@ -14,15 +14,20 @@ html {
 body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
-  height: 100vh;
   color: #333;
+  height: 90vh;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* LAYOUT */
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  /* border: 2px solid blue; */
+}
 
 .grid {
   display: grid;
@@ -60,4 +65,92 @@ body {
 div img {
   width: 45px;
   height: 45px;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.modalP {
+  font-size: 4rem;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  z-index: 10;
+}
+
+.restartBtn {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  padding: 1em 2em;
+  border: none;
+  /* border-radius: 10% 25%; */
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transform: skew(0deg, -3deg);
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.4),
+    -2px -2px 4px 2px rgba(255, 255, 255, 0.4);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
+
+.players {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10rem;
+  /* border: 2px solid blue; */
+}
+
+.players h1 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 3rem;
+}
+
+.players p {
+  color: #fff;
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+.players img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10%;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.4),
+    -2px -2px 4px 2px rgba(225, 225, 225, 0.4);
+}
+
+.active--player {
+  border: 2px solid blue;
 }
