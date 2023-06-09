@@ -32,6 +32,10 @@ let player1Name = document.querySelector('.player1-name')
 let player2Name = document.querySelector('.player2-name')
 let player1Score = document.querySelector('.player1--score')
 let player2Score = document.querySelector('.player2--score')
+/* PLAYER INPUT */
+let player1Input = document.querySelector('.player1-input')
+let player2Input = document.querySelector('.player2-input')
+/* PLAYER INPUT */
 
 let scores = [0, 0]
 
@@ -39,17 +43,17 @@ let scores = [0, 0]
 document.addEventListener('keyup', function (e) {
   e.preventDefault()
   if (e.key === 'Enter') {
-    if (player1Label.value === '' && player2Label.value === '') {
+    if (player1Input.value === '' && player2Input.value === '') {
       alert('You have to add a name')
-    } else {
-      player1Name.textContent = player1Label.value
+    }
+    if (player1Input.value !== '') {
+      player1Name.textContent = player1Input.value
       document.querySelector('.player1-input').classList.add('hidden')
       document.querySelector('.player1-input--name').classList.add('hidden')
     }
-    if (player2Label.value === '') {
-      alert('You have to add a name')
-    } else {
-      player2Name.textContent = player2Label.value
+    if (player2Input.value !== '') {
+      player2Name.textContent = player2Input.value
+      console.log(1, player2Name.textContent, 2, player2Input.value)
       document.querySelector('.player2-input').classList.add('hidden')
       document.querySelector('.player2-input--name').classList.add('hidden')
     }
