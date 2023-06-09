@@ -26,6 +26,7 @@ let textNodeWin = document.createTextNode(`Player ${currentPlayer} wins!`)
 let modalP = document.querySelector('.modalP')
 let restartBtn = document.querySelector('.restart-button')
 let resetScoreBtn = document.querySelector('.reset-score--button')
+resetScoreBtn.classList.add('hidden')
 let player1 = document.querySelector('.player1')
 let player2 = document.querySelector('.player2')
 let player1Name = document.querySelector('.player1-name')
@@ -36,6 +37,8 @@ let player2Score = document.querySelector('.player2--score')
 let player1Input = document.querySelector('.player1-input')
 let player2Input = document.querySelector('.player2-input')
 /* PLAYER INPUT */
+document.querySelector('.player2-input').classList.add('hidden')
+document.querySelector('.player2-input--name').classList.add('hidden')
 
 let scores = [0, 0]
 
@@ -50,12 +53,16 @@ document.addEventListener('keyup', function (e) {
       player1Name.textContent = player1Input.value
       document.querySelector('.player1-input').classList.add('hidden')
       document.querySelector('.player1-input--name').classList.add('hidden')
+      document.querySelector('.player2-input').classList.remove('hidden')
+      document.querySelector('.player2-input--name').classList.remove('hidden')
     }
     if (player2Input.value !== '') {
       player2Name.textContent = player2Input.value
       console.log(1, player2Name.textContent, 2, player2Input.value)
       document.querySelector('.player2-input').classList.add('hidden')
       document.querySelector('.player2-input--name').classList.add('hidden')
+      game.classList.remove('hidden')
+      resetScoreBtn.classList.remove('hidden')
     }
   }
 })
@@ -149,9 +156,15 @@ const switchPlayer = function (player) {
 /* ---------- DISPLAY MODAL FUNCTION---------- */
 // displayModal()
 const displayModal = function () {
-  modalP.textContent = `Player ${currentPlayer} wins!`
-  overlay.classList.remove('hidden')
-  modal.classList.remove('hidden')
+  if (checkDraw(grid3x3)) {
+    modalP.textContent = `It's draw!`
+    overlay.classList.remove('hidden')
+    modal.classList.remove('hidden')
+  } else {
+    modalP.textContent = `Player ${currentPlayer} wins!`
+    overlay.classList.remove('hidden')
+    modal.classList.remove('hidden')
+  }
 }
 /* ---------- DISPLAY MODAL FUNCTION---------- */
 
@@ -162,12 +175,13 @@ const mainGame = function (grid) {
       if (!grid.textContent && !gameEnded) {
         grid.textContent = currentPlayer
         if (checkWinner(currentPlayer)) {
-          // grid.textContent === 'X'
+          grid.textContent === 'X'
           gameEnded = true
           displayModal()
           resetGame(grid3x3)
         } else if (checkDraw(grid3x3)) {
-          alert(`It's a draw`)
+          displayModal()
+          resetGame(grid3x3)
           gameEnded = true
         } else {
           switchPlayer()

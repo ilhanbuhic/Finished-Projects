@@ -63,10 +63,6 @@ div img {
   height: 45px;
 }
 
-.hidden {
-  display: none;
-}
-
 .modal {
   position: absolute;
   top: 50%;
@@ -110,9 +106,9 @@ div img {
 }
 
 .reset-score--button {
+  display: flex;
   max-width: 100%;
   margin: 0 auto;
-  display: flex;
   justify-content: center;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   padding: 1em 2em;
@@ -152,6 +148,11 @@ div img {
 .player1,
 .player2 {
   padding: 1rem 10rem;
+}
+
+.players h1,
+.players p {
+  text-align: center;
 }
 
 .players h1 {
@@ -229,4 +230,8 @@ div img {
   outline: none;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
   /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+}
+
+.hidden {
+  display: none;
 }
