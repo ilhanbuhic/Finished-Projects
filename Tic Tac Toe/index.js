@@ -14,66 +14,55 @@ const winningSequence = [
   [2, 4, 6],
 ]
 
+const gridMain = document.querySelector('.grid')
+const grid3x3 = document.querySelectorAll('.grid > div')
 let currentPlayer = 'X'
-let gameEnded = false // Track if the game has ended
+let gameEnded = false
 let modal = document.querySelector('.modal')
 let overlay = document.querySelector('.overlay')
 let textNodeWin = document.createTextNode(`Player ${currentPlayer} wins!`)
 let modalP = document.querySelector('.modalP')
-let restartBtn = document.querySelector('.restartBtn')
+let restartBtn = document.querySelector('.restart-button')
+let resetScoreBtn = document.querySelector('.reset-score--button')
+let player1 = document.querySelector('.player1')
+let player2 = document.querySelector('.player2')
 let player1Name = document.querySelector('.player1--name')
 let player2Name = document.querySelector('.player2--name')
 let player1Score = document.querySelector('.player1--score')
 let player2Score = document.querySelector('.player2--score')
 let scores = [0, 0]
 
-restartBtn.addEventListener('click', function () {
-  resetGame()
-  overlay.classList.add('hidden')
-  modal.classList.add('hidden')
-})
+/* ---------- RESET GAME FUNCTION----------*/
+const resetGame = function (grid) {
+  grid.forEach(function (gridEl) {
+    gridEl.textContent = ''
+    player1.classList.add('active--player')
+    player2.classList.remove('active--player')
+  })
+  currentPlayer = 'X'
+  gameEnded = false
+}
+/* ---------- RESET GAME FUNCTION----------*/
 
-// displayModal()
-// const displayModal = function () {
-//   modalP.textContent = `Player ${currentPlayer} wins!`
-//   overlay.classList.remove('hidden')
-//   modal.classList.remove('hidden')
-// }
-
-const switchPlayer = function () {
-  currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
+const resetScore = function (grid) {
+  grid.forEach(function (gridEl) {
+    gridEl.textContent = ''
+    player1.classList.add('active--player')
+    player2.classList.remove('active--player')
+    scores = [0, 0]
+    player1Score.textContent = 'Score: 0'
+    player2Score.textContent = 'Score: 0'
+  })
 }
 
-const gridMain = document.querySelector('.grid')
-const grid = document.querySelectorAll('.grid > div')
-
-grid.forEach(function (gridEl, index) {
-  gridEl.addEventListener('click', function () {
-    if (!gridEl.textContent && !gameEnded) {
-      gridEl.textContent = currentPlayer
-      if (checkWinner(currentPlayer)) {
-        gridEl.textContent === 'X'
-        // alert(`Player ${currentPlayer} wins`)
-        gameEnded = true
-        // displayModal()
-        resetGame()
-      } else if (checkDraw()) {
-        alert(`It's a draw`)
-        gameEnded = true
-      } else {
-        switchPlayer()
-      }
-    }
-  })
-})
-
+/* ---------- CHECK WINNER FUNCTION---------- */
 const checkWinner = function (player) {
   for (const sequence of winningSequence) {
     const [a, b, c] = sequence
     if (
-      grid[a].textContent === player &&
-      grid[b].textContent === player &&
-      grid[c].textContent === player
+      grid3x3[a].textContent === player &&
+      grid3x3[b].textContent === player &&
+      grid3x3[c].textContent === player
     ) {
       if (player === 'X') {
         scores[0]++
@@ -89,21 +78,75 @@ const checkWinner = function (player) {
   }
   return false
 }
+/* ---------- CHECK WINNER FUNCTION---------- */
 
-const checkDraw = function () {
+/* ---------- CHECK DRAW FUNCTION---------- */
+const checkDraw = function (grid) {
   for (const gridElement of grid) {
     if (!gridElement.textContent) return false
   }
   return true
 }
+/* ---------- CHECK DRAW FUNCTION---------- */
 
-const resetGame = function () {
-  grid.forEach(function (gridEl) {
-    gridEl.textContent = ''
-  })
-  currentPlayer = 'X'
-  gameEnded = false
+restartBtn.addEventListener('click', function () {
+  resetGame(grid3x3)
+  overlay.classList.add('hidden')
+  modal.classList.add('hidden')
+})
+resetScoreBtn.addEventListener('click', function () {
+  resetScore(grid3x3)
+  console.log('nesto')
+})
+
+/* ---------- SWITCH PLAYER FUNCTION---------- */
+const switchPlayer = function () {
+  if (currentPlayer === 'X') {
+    currentPlayer = 'O'
+    player1.classList.remove('active--player')
+    player2.classList.add('active--player')
+    console.log(currentPlayer)
+  } else {
+    currentPlayer = 'X'
+    player1.classList.add('active--player')
+    player2.classList.remove('active--player')
+    console.log(currentPlayer)
+  }
 }
+/* ---------- SWITCH PLAYER FUNCTION---------- */
+
+/* ---------- DISPLAY MODAL FUNCTION---------- */
+// displayModal()
+const displayModal = function () {
+  modalP.textContent = `Player ${currentPlayer} wins!`
+  overlay.classList.remove('hidden')
+  modal.classList.remove('hidden')
+}
+/* ---------- DISPLAY MODAL FUNCTION---------- */
+
+const mainGame = function (grid) {
+  resetGame(grid3x3)
+  grid.forEach(function (grid) {
+    grid.addEventListener('click', function () {
+      if (!grid.textContent && !gameEnded) {
+        grid.textContent = currentPlayer
+        if (checkWinner(currentPlayer)) {
+          grid.textContent === 'X'
+          gameEnded = true
+          displayModal()
+          resetGame(grid3x3)
+        } else if (checkDraw(grid3x3)) {
+          alert(`It's a draw`)
+          gameEnded = true
+        } else {
+          switchPlayer()
+        }
+      }
+    })
+  })
+}
+mainGame(grid3x3)
+
 // -------------------------- OLD CODE - DOESN'T WORK PERFECTLY --------------------------
 // let currentPlayer = 'X'
 // let gameEnded = false // Track if the game has ended

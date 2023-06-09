@@ -15,7 +15,7 @@ body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
   color: #333;
-  height: 90vh;
+  height: 86.5vh;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
 }
 
@@ -48,10 +48,7 @@ body {
   font-size: 48px;
   color: #000;
   cursor: pointer;
-}
-
-.grid div:hover {
-  background-color: #eee;
+  transition: background-color 0.3s ease;
 }
 
 .grid div[data-marker='X'] {
@@ -83,6 +80,7 @@ div img {
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 10;
+  margin: 0 auto;
 }
 
 .modalP {
@@ -93,7 +91,7 @@ div img {
   z-index: 10;
 }
 
-.restartBtn {
+.restart-button {
   max-width: 100%;
   margin: 0 auto;
   display: flex;
@@ -112,6 +110,26 @@ div img {
     -2px -2px 4px 2px rgba(255, 255, 255, 0.4);
 }
 
+.reset-score--button {
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  padding: 1em 2em;
+  border: none;
+  /* border-radius: 10% 25%; */
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  border-radius: 10px;
+  box-shadow: 2px 8px 10px rgba(0, 0, 0, 0.4),
+    -2px -2px 4px 2px rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -128,7 +146,13 @@ div img {
   align-items: center;
   justify-content: space-around;
   margin-top: 10rem;
+  height: 13rem;
   /* border: 2px solid blue; */
+}
+
+.player1,
+.player2 {
+  padding: 1rem 10rem;
 }
 
 .players h1 {
@@ -151,6 +175,31 @@ div img {
     -2px -2px 4px 2px rgba(225, 225, 225, 0.4);
 }
 
+/* .active--player {
+  padding: 1rem 10rem;
+  outline: 4px solid #79367e;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3),
+    inset 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  background-color: #753682;
+  border-radius: 8px; Optional: Adds rounded corners
+} */
+
 .active--player {
-  border: 2px solid blue;
+  padding: 1rem 10rem;
+  outline: 4px solid #79367e;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5),
+    inset 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  border-radius: 20%;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+}
+
+.active--player:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6),
+    inset 0 0 10px 10px rgba(0, 0, 0, 0.4);
 }
