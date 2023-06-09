@@ -16,6 +16,8 @@ const winningSequence = [
 
 const gridMain = document.querySelector('.grid')
 const grid3x3 = document.querySelectorAll('.grid > div')
+const game = document.querySelector('.game')
+game.classList.add('hidden')
 let currentPlayer = 'X'
 let gameEnded = false
 let modal = document.querySelector('.modal')
@@ -26,11 +28,35 @@ let restartBtn = document.querySelector('.restart-button')
 let resetScoreBtn = document.querySelector('.reset-score--button')
 let player1 = document.querySelector('.player1')
 let player2 = document.querySelector('.player2')
-let player1Name = document.querySelector('.player1--name')
-let player2Name = document.querySelector('.player2--name')
+let player1Name = document.querySelector('.player1-name')
+let player2Name = document.querySelector('.player2-name')
 let player1Score = document.querySelector('.player1--score')
 let player2Score = document.querySelector('.player2--score')
+
 let scores = [0, 0]
+
+/* ---------- ADDING PLAYER NAMES FUNCTION----------*/
+document.addEventListener('keyup', function (e) {
+  e.preventDefault()
+  if (e.key === 'Enter') {
+    if (player1Label.value === '' && player2Label.value === '') {
+      alert('You have to add a name')
+    } else {
+      player1Name.textContent = player1Label.value
+      document.querySelector('.player1-input').classList.add('hidden')
+      document.querySelector('.player1-input--name').classList.add('hidden')
+    }
+    if (player2Label.value === '') {
+      alert('You have to add a name')
+    } else {
+      player2Name.textContent = player2Label.value
+      document.querySelector('.player2-input').classList.add('hidden')
+      document.querySelector('.player2-input--name').classList.add('hidden')
+    }
+  }
+})
+
+/* ---------- ADDING PLAYER NAMES FUNCTION----------*/
 
 /* ---------- RESET GAME FUNCTION----------*/
 const resetGame = function (grid) {
@@ -44,6 +70,7 @@ const resetGame = function (grid) {
 }
 /* ---------- RESET GAME FUNCTION----------*/
 
+/* ---------- RESET SCORE FUNCTION----------*/
 const resetScore = function (grid) {
   grid.forEach(function (gridEl) {
     gridEl.textContent = ''
@@ -54,6 +81,7 @@ const resetScore = function (grid) {
     player2Score.textContent = 'Score: 0'
   })
 }
+/* ---------- RESET SCORE FUNCTION----------*/
 
 /* ---------- CHECK WINNER FUNCTION---------- */
 const checkWinner = function (player) {
@@ -96,11 +124,10 @@ restartBtn.addEventListener('click', function () {
 })
 resetScoreBtn.addEventListener('click', function () {
   resetScore(grid3x3)
-  console.log('nesto')
 })
 
 /* ---------- SWITCH PLAYER FUNCTION---------- */
-const switchPlayer = function () {
+const switchPlayer = function (player) {
   if (currentPlayer === 'X') {
     currentPlayer = 'O'
     player1.classList.remove('active--player')
@@ -131,7 +158,7 @@ const mainGame = function (grid) {
       if (!grid.textContent && !gameEnded) {
         grid.textContent = currentPlayer
         if (checkWinner(currentPlayer)) {
-          grid.textContent === 'X'
+          // grid.textContent === 'X'
           gameEnded = true
           displayModal()
           resetGame(grid3x3)
