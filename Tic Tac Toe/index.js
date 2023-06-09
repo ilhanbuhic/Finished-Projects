@@ -14,31 +14,41 @@ const winningSequence = [
   [2, 4, 6],
 ]
 
+/* ------ GRID SELECTOR ------ */
 const gridMain = document.querySelector('.grid')
 const grid3x3 = document.querySelectorAll('.grid > div')
 const game = document.querySelector('.game')
 game.classList.add('hidden')
-let currentPlayer = 'X'
-let gameEnded = false
+/* ------ GRID SELECTOR ------ */
+
+/* ------ GAME ELEMENTS SELECTOR ------ */
 let modal = document.querySelector('.modal')
 let overlay = document.querySelector('.overlay')
-let textNodeWin = document.createTextNode(`Player ${currentPlayer} wins!`)
 let modalP = document.querySelector('.modalP')
 let restartBtn = document.querySelector('.restart-button')
 let resetScoreBtn = document.querySelector('.reset-score--button')
 resetScoreBtn.classList.add('hidden')
+/* ------ GRID SELECTOR ------ */
+
+/* ------ PLAYER 1-1 SELECTOR ------ */
 let player1 = document.querySelector('.player1')
 let player2 = document.querySelector('.player2')
 let player1Name = document.querySelector('.player1-name')
 let player2Name = document.querySelector('.player2-name')
 let player1Score = document.querySelector('.player1--score')
 let player2Score = document.querySelector('.player2--score')
-/* PLAYER INPUT */
+/* ------ GRID SELECTOR ------ */
+
+let currentPlayer = 'X'
+let gameEnded = false
+/* ------  PLAYER INPUT ------  */
 let player1Input = document.querySelector('.player1-input')
 let player2Input = document.querySelector('.player2-input')
-/* PLAYER INPUT */
+/* ------  PLAYER INPUT ------  */
+
 document.querySelector('.player2-input').classList.add('hidden')
 document.querySelector('.player2-input--name').classList.add('hidden')
+let randomPlayer = Math.ceil(Math.random() * 2)
 
 let scores = [0, 0]
 
@@ -63,6 +73,13 @@ document.addEventListener('keyup', function (e) {
       document.querySelector('.player2-input--name').classList.add('hidden')
       game.classList.remove('hidden')
       resetScoreBtn.classList.remove('hidden')
+      if (randomPlayer === 'X') {
+        player1.classList.add('active--player')
+        player2.classList.remove('active--player')
+      } else {
+        player1.classList.remove('active--player')
+        player2.classList.add('active--player')
+      }
     }
   }
 })
@@ -151,6 +168,7 @@ const switchPlayer = function (player) {
     console.log(currentPlayer)
   }
 }
+
 /* ---------- SWITCH PLAYER FUNCTION---------- */
 
 /* ---------- DISPLAY MODAL FUNCTION---------- */
@@ -167,7 +185,6 @@ const displayModal = function () {
   }
 }
 /* ---------- DISPLAY MODAL FUNCTION---------- */
-
 const mainGame = function (grid) {
   resetGame(grid3x3)
   grid.forEach(function (grid) {
@@ -191,6 +208,7 @@ const mainGame = function (grid) {
   })
 }
 mainGame(grid3x3)
+player1.classList.remove('active--player')
 
 // -------------------------- OLD CODE - DOESN'T WORK PERFECTLY --------------------------
 // let currentPlayer = 'X'

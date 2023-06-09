@@ -175,35 +175,6 @@ div img {
     -2px -2px 4px 2px rgba(225, 225, 225, 0.4);
 }
 
-/* .active--player {
-  padding: 1rem 10rem;
-  outline: 4px solid #79367e;
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3),
-    inset 0 0 5px 5px rgba(0, 0, 0, 0.3);
-  background-color: #753682;
-  border-radius: 8px; Optional: Adds rounded corners
-} */
-
-.active--player {
-  padding: 1rem 10rem;
-  outline: 4px solid #79367e;
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5),
-    inset 0 0 5px 5px rgba(0, 0, 0, 0.3);
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
-  border-radius: 20%;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: all 0.4s ease;
-}
-
-.active--player:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6),
-    inset 0 0 10px 10px rgba(0, 0, 0, 0.4);
-}
-
 .player-input-names {
   position: absolute;
   top: 50%;
@@ -230,6 +201,26 @@ div img {
   outline: none;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
   /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
+}
+
+.active--player {
+  padding: 1rem 10rem;
+  outline: 4px solid #79367e;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5),
+    inset 0 0 5px 5px rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  border-radius: 20%;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+}
+
+.active--player:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6),
+    inset 0 0 10px 10px rgba(0, 0, 0, 0.4);
 }
 
 .hidden {
