@@ -17,6 +17,7 @@ const winningSequence = [
 /* ------ GRID SELECTOR ------ */
 const gridMain = document.querySelector('.grid')
 const grid3x3 = document.querySelectorAll('.grid > div')
+const clickSound = document.querySelector('.clickSound')
 const game = document.querySelector('.game')
 game.classList.add('hidden')
 /* ------ GRID SELECTOR ------ */
@@ -48,7 +49,7 @@ let player2Input = document.querySelector('.player2-input')
 
 document.querySelector('.player2-input').classList.add('hidden')
 document.querySelector('.player2-input--name').classList.add('hidden')
-let randomPlayer = Math.ceil(Math.random() * 2)
+// let randomPlayer = Math.ceil(Math.random() * 2)
 
 let scores = [0, 0]
 
@@ -73,7 +74,7 @@ document.addEventListener('keyup', function (e) {
       document.querySelector('.player2-input--name').classList.add('hidden')
       game.classList.remove('hidden')
       resetScoreBtn.classList.remove('hidden')
-      if (randomPlayer === 'X') {
+      if (currentPlayer === 'X') {
         player1.classList.add('active--player')
         player2.classList.remove('active--player')
       } else {
@@ -207,6 +208,14 @@ const mainGame = function (grid) {
     })
   })
 }
+
+grid3x3.forEach(gridEl => {
+  gridEl.addEventListener('click', function () {
+    clickSound.currentTime = 0
+    clickSound.play()
+  })
+})
+
 mainGame(grid3x3)
 player1.classList.remove('active--player')
 
