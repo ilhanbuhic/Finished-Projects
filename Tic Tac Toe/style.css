@@ -16,7 +16,10 @@ body {
   font-weight: 400;
   color: #333;
   height: 89.6vh;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  background: linear-gradient(to top left, #753682, #bf2e34);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* LAYOUT */
@@ -145,6 +148,14 @@ div img {
   /* border: 2px solid blue; */
 }
 
+.player-input-names,
+.players {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 5rem;
+}
+
 .player1,
 .player2 {
   padding: 1rem 10rem;
@@ -225,4 +236,82 @@ div img {
 
 .hidden {
   display: none;
+}
+
+/* Add a media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  body {
+    height: auto;
+  }
+
+  label[for='name'] {
+    text-align: center;
+    /* margin-left: 20%; */
+    display: block;
+    width: 100%;
+  }
+
+  .players {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+  }
+
+  .player-input-names,
+  .players {
+    flex-direction: row;
+  }
+
+  .player1,
+  .player2 {
+    padding: 1rem;
+  }
+
+  .player1 img,
+  .player2 img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .player-input-names {
+    font-size: 2rem;
+  }
+
+  .player-input-names input {
+    padding: 0.8rem;
+    width: 80%;
+    font-size: 1.4rem;
+  }
+
+  .active--player {
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* Additional media query for even smaller screens */
+@media only screen and (max-width: 480px) {
+  .modal {
+    width: 80%;
+    padding: 4rem;
+  }
+
+  .modalP {
+    font-size: 3rem;
+  }
+
+  .restart-button,
+  .reset-score--button {
+    font-size: 1.5rem;
+    padding: 0.8em 1.5em;
+  }
+
+  .grid {
+    width: 250px;
+    height: 250px;
+  }
+
+  .grid div {
+    font-size: 36px;
+  }
 }
