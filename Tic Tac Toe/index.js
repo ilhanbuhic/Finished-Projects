@@ -49,7 +49,7 @@ document.querySelector('.player2-input').classList.add('hidden')
 document.querySelector('.player2-input--name').classList.add('hidden')
 
 /* ---------- INIT ----------*/
-let currentPlayer
+let currentPlayer = 'X'
 let randomPlayer
 let gameEnded = false
 let scores = [0, 0]
@@ -93,11 +93,13 @@ document.addEventListener('keyup', function (e) {
       resetScoreBtn.classList.remove('hidden')
       player1.classList.add('active--player')
       player2.classList.remove('active--player')
+      currentPlayer
+      randomPlayerFunc()
       switchPlayer()
     }
   }
 })
-randomPlayerFunc()
+
 /* ---------- ADDING PLAYER NAMES FUNCTION----------*/
 
 /* ---------- RESET GAME FUNCTION----------*/
@@ -110,8 +112,6 @@ const resetGame = function (grid) {
   // currentPlayer
   gameEnded = false
 }
-console.log(randomPlayer)
-console.log(currentPlayer)
 /* ---------- RESET GAME FUNCTION----------*/
 
 /* ---------- RESET SCORE FUNCTION----------*/
