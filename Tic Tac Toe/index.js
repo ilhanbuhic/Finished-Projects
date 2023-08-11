@@ -106,7 +106,6 @@ document.addEventListener('keyup', function (e) {
 const resetGame = function (grid) {
   grid.forEach(function (gridEl) {
     gridEl.textContent = ''
-    // randomPlayerFunc()
     switchPlayer()
   })
   // currentPlayer
@@ -154,24 +153,10 @@ const checkWinner = function (player) {
 /* ---------- CHECK WINNER FUNCTION---------- */
 
 /* ---------- CHECK DRAW FUNCTION---------- */
-const checkDraw = function (grid) {
-  for (const sequence of winningSequence) {
-    const [a, b, c] = sequence
-    if (
-      grid3x3[a].textContent !== '' &&
-      grid3x3[b].textContent !== '' &&
-      grid3x3[c].textContent !== ''
-    ) {
-      return false
-    }
-  }
-
-  // If no winning sequence and all grid elements have content, it's a draw
-  for (const gridElement of grid3x3) {
-    if (!gridElement.textContent) return false
-  }
-  return true
+const checkDraw = function () {
+  return getEmptyCells().length === 0 && !checkWinner('X') && !checkWinner('O')
 }
+
 /* ---------- CHECK DRAW FUNCTION---------- */
 
 restartBtn.addEventListener('click', function () {
@@ -185,10 +170,10 @@ resetScoreBtn.addEventListener('click', function () {
 
 /* ---------- SWITCH PLAYER FUNCTION---------- */
 const switchPlayer = function () {
-  if (currentPlayer === 'X') {
+  if (currentPlayer === 'X' || randomPlayer === 1) {
     player1.classList.add('active--player')
     player2.classList.remove('active--player')
-  } else {
+  } else if (currentPlayer === 'O' || randomPlayer === 2) {
     player1.classList.remove('active--player')
     player2.classList.add('active--player')
   }
@@ -197,33 +182,98 @@ const switchPlayer = function () {
 /* ---------- SWITCH PLAYER FUNCTION---------- */
 
 /* ---------- DISPLAY MODAL FUNCTION---------- */
-// displayModal()
-const displayModal = function () {
+const displayModal = function (winner) {
   if (checkDraw(grid3x3)) {
     modalP.textContent = `It's draw!`
-    overlay.classList.remove('hidden')
-    modal.classList.remove('hidden')
   } else {
-    modalP.textContent = `Player ${currentPlayer} wins!`
-    overlay.classList.remove('hidden')
-    modal.classList.remove('hidden')
+    modalP.textContent = `Player ${winner} wins!`
   }
+  overlay.classList.remove('hidden')
+  modal.classList.remove('hidden')
 }
 /* ---------- DISPLAY MODAL FUNCTION---------- */
-const mainGame = function (grid) {
+
+function getEmptyCells() {
+  let emptyCells = []
+  grid3x3.forEach((cell, index) => {
+    if (!cell.textContent) {
+      emptyCells.push(index)
+    }
+  })
+  return emptyCells
+}
+
+function performComputerMove() {
+  let emptyCells = getEmptyCells()
+  if (emptyCells.length > 0) {
+    let randomCellIndex = Math.floor(Math.random() * emptyCells.length)
+    grid3x3[emptyCells[randomCellIndex]].textContent = 'O'
+    clickSound.currentTime = 0.05
+    clickSound.play()
+  }
+}
+
+// function mode1vPC(grid) {
+//   resetGame(grid)
+//   grid.forEach(function (gridEl, index) {
+//     gridEl.addEventListener('click', function () {
+//       if (!gridEl.textContent && !gameEnded) {
+//         gridEl.textContent = 'X' // Player always moves with 'X' in PC mode
+
+//         if (checkWinner('X')) {
+//           scores[0]++
+//           player1Score.textContent = `Score: ${scores[0]}`
+//           gameEnded = true
+//           displayModal('X')
+//           resetGame(grid)
+//         } else if (checkDraw(grid)) {
+//           displayModal()
+//           resetGame(grid)
+//           gameEnded = true
+//         } else {
+//           // setTimeout(performComputerMove, 1000) // PC moves right after player
+//           performComputerMove()
+//           if (checkWinner('O')) {
+//             scores[1]++
+//             player2Score.textContent = `Score: ${scores[1]}`
+//             gameEnded = true
+//             displayModal('O')
+//             resetGame(grid)
+//           } else if (checkDraw(grid)) {
+//             displayModal('Draw')
+//             resetGame(grid)
+//             gameEnded = true
+//           }
+//         }
+//       }
+//     })
+//   })
+
+//   if (randomPlayer === 2) {
+//     // PC moves first if randomPlayer equals 2
+//     setTimeout(performComputerMove, 1000)
+//   }
+// }
+// mode1vPC(grid3x3)
+
+const mode1v1Game = function (grid) {
   resetGame(grid3x3)
   grid.forEach(function (grid) {
     grid.addEventListener('click', function () {
       if (!grid.textContent && !gameEnded) {
         grid.textContent = currentPlayer
+
         if (checkWinner(currentPlayer)) {
-          grid.textContent === currentPlayer
+          scores[currentPlayer === 'X' ? 0 : 1]++
+          currentPlayer === 'X'
+            ? (player1Score.textContent = `Score: ${scores[0]}`)
+            : (player1Score.textContent = `Score: ${scores[1]}`)
           gameEnded = true
-          displayModal()
+          displayModal(currentPlayer)
           randomPlayerFunc()
           resetGame(grid3x3)
-        } else if (checkDraw(grid3x3)) {
-          displayModal()
+        } else if (checkDraw()) {
+          displayModal('Draw')
           resetGame(grid3x3)
           gameEnded = true
         } else {
@@ -241,5 +291,4 @@ const mainGame = function (grid) {
     })
   })
 }
-
-mainGame(grid3x3)
+mode1v1Game(grid3x3)

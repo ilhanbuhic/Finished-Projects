@@ -29,7 +29,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 50vh;
-  /* border: 2px solid blue; */
 }
 
 .grid {
@@ -51,14 +50,6 @@ body {
   color: #000;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.grid div[data-marker='X'] {
-  color: #ff0000;
-}
-
-.grid div[data-marker='O'] {
-  color: #0000ff;
 }
 
 div img {
@@ -238,6 +229,15 @@ div img {
   display: none;
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Add a media query for smaller screens */
 @media only screen and (max-width: 768px) {
   body {
@@ -314,4 +314,18 @@ div img {
   .grid div {
     font-size: 36px;
   }
+}
+
+.grid div:hover {
+  transform: scale(1.05);
+}
+
+.grid div[data-marker='X'],
+.grid div[data-marker='O'] {
+  animation: spin 0.5s infinite alternate; /* Example rotation animation */
+}
+
+.winning-line {
+  border: 3px solid #ffcc00; /* Example color change */
+  transition: border-color 0.5s ease;
 }
