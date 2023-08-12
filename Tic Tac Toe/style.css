@@ -134,9 +134,10 @@ div img {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: row;
+  text-align: center; /* Center-align text */
   margin-top: 10rem;
   height: 13rem;
-  /* border: 2px solid blue; */
 }
 
 .player-input-names,
@@ -313,6 +314,18 @@ div img {
 
   .grid div {
     font-size: 36px;
+  }
+
+  .players h1 {
+    color: #fff;
+    font-weight: 300;
+    font-size: 2.5rem;
+  }
+
+  .players p {
+    color: #fff;
+    font-weight: 300;
+    font-size: 1.5rem;
   }
 }
 

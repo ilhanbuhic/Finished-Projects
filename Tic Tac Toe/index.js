@@ -75,8 +75,16 @@ document.addEventListener('keyup', function (e) {
   if (e.key === 'Enter') {
     if (player1Input.value === '' && player2Input.value === '') {
       alert('You have to add a name')
+    } else if (
+      !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value) &&
+      !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+    ) {
+      alert(`Enter full name`)
     }
-    if (player1Input.value !== '') {
+    if (
+      player1Input.value !== '' &&
+      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+    ) {
       player1Name.textContent = player1Input.value
       document.querySelector('.player1-input').classList.add('hidden')
       document.querySelector('.player1-input--name').classList.add('hidden')
@@ -85,7 +93,10 @@ document.addEventListener('keyup', function (e) {
       player1.classList.remove('active--player')
       player2.classList.add('active--player')
     }
-    if (player2Input.value !== '') {
+    if (
+      player2Input.value !== '' &&
+      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+    ) {
       player2Name.textContent = player2Input.value
       document.querySelector('.player2-input').classList.add('hidden')
       document.querySelector('.player2-input--name').classList.add('hidden')
