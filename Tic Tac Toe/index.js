@@ -70,46 +70,122 @@ grid3x3.forEach(gridEl => {
 /* ---------- INIT ----------*/
 
 /* ---------- ADDING PLAYER NAMES FUNCTION----------*/
+
+const nesto = function (
+  playerInput,
+  playerName,
+  activePlayer,
+  nonActivePlayer
+) {
+  if (playerInput.value === '') {
+    alert('You have to add a name')
+  } else if (
+    playerInput.value !== '' &&
+    !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)
+  ) {
+    alert('Enter full name')
+  } else {
+    playerName.textContent = playerInput.value
+    document.querySelector('.player1-input').classList.add('hidden')
+    document.querySelector('.player1-input--name').classList.add('hidden')
+    document.querySelector('.player2-input').classList.remove('hidden')
+    document.querySelector('.player2-input--name').classList.remove('hidden')
+    nonActivePlayer.classList.remove('active--player')
+    activePlayer.classList.add('active--player')
+    return true
+  }
+}
 document.addEventListener('keyup', function (e) {
   e.preventDefault()
   if (e.key === 'Enter') {
-    if (player1Input.value === '' && player2Input.value === '') {
-      alert('You have to add a name')
-    } else if (
-      !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value) &&
-      !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
-    ) {
-      alert(`Enter full name`)
-    }
     if (
-      player1Input.value !== '' &&
-      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+      currentPlayer === 'X' &&
+      nesto(player1Input, player1Name, player1, player2)
     ) {
-      player1Name.textContent = player1Input.value
-      document.querySelector('.player1-input').classList.add('hidden')
-      document.querySelector('.player1-input--name').classList.add('hidden')
-      document.querySelector('.player2-input').classList.remove('hidden')
-      document.querySelector('.player2-input--name').classList.remove('hidden')
-      player1.classList.remove('active--player')
-      player2.classList.add('active--player')
-    }
-    if (
-      player2Input.value !== '' &&
-      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
-    ) {
-      player2Name.textContent = player2Input.value
-      document.querySelector('.player2-input').classList.add('hidden')
-      document.querySelector('.player2-input--name').classList.add('hidden')
-      game.classList.remove('hidden')
-      resetScoreBtn.classList.remove('hidden')
-      player1.classList.add('active--player')
-      player2.classList.remove('active--player')
-      currentPlayer
-      randomPlayerFunc()
+      nesto(player1Input, player1Name, player1, player2)
+      currentPlayer = 'O'
       switchPlayer()
-    }
+    } else nesto(player2Input, player2Name, player2, player1)
+    game.classList.remove('hidden')
+    resetScoreBtn.classList.remove('hidden')
+    currentPlayer
+    randomPlayerFunc()
+    switchPlayer()
   }
 })
+
+// document.addEventListener('keyup', function (e) {
+//   e.preventDefault()
+//   if (e.key === 'Enter') {
+//     if (player1Input.value === '') {
+//       alert('You have to add a name')
+//     } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
+//       alert(`Enter full name`)
+//     } else if (
+//       player1Input.value !== '' &&
+//       /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+//     ) {
+//       player1Name.textContent = player1Input.value
+//       document.querySelector('.player1-input').classList.add('hidden')
+//       document.querySelector('.player1-input--name').classList.add('hidden')
+//       document.querySelector('.player2-input').classList.remove('hidden')
+//       document.querySelector('.player2-input--name').classList.remove('hidden')
+//       player1.classList.remove('active--player')
+//       player2.classList.add('active--player')
+//     }
+//     if (player2Input.value === '') {
+//       alert('You have to add a name')
+//     } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
+//       alert('Enter full name')
+//     } else if (
+//       player2Input.value !== '' &&
+//       /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+//     ) {
+//       player2Name.textContent = player2Input.value
+//       document.querySelector('.player2-input').classList.add('hidden')
+//       document.querySelector('.player2-input--name').classList.add('hidden')
+//       game.classList.remove('hidden')
+//       resetScoreBtn.classList.remove('hidden')
+//       player1.classList.add('active--player')
+//       player2.classList.remove('active--player')
+//       currentPlayer
+//       randomPlayerFunc()
+//       switchPlayer()
+//     }
+//   }
+// })
+
+const ena = function () {
+  if (
+    player1Input.value !== '' &&
+    /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value) &&
+    player1Input.value === 'Ena Bejtic'
+  ) {
+    player1Name.textContent = 'Ćoćkica'
+    document.querySelector('.player1-input').classList.add('hidden')
+    document.querySelector('.player1-input--name').classList.add('hidden')
+    document.querySelector('.player2-input').classList.remove('hidden')
+    document.querySelector('.player2-input--name').classList.remove('hidden')
+    player1.classList.remove('active--player')
+    player2.classList.add('active--player')
+    document.querySelector('img[alt="player1-picture"]').src =
+      './resources/IMG_4262.png'
+  } else if (
+    player2Input.value !== '' &&
+    /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value) &&
+    player2Input.value === 'Ena Bejtic'
+  ) {
+    player2Name.textContent = 'Ćoćkica'
+    document.querySelector('.player2-input').classList.add('hidden')
+    document.querySelector('.player2-input--name').classList.add('hidden')
+    document.querySelector('.player1-input').classList.remove('hidden')
+    document.querySelector('.player1-input--name').classList.remove('hidden')
+    player1.classList.add('active--player')
+    player2.classList.remove('active--player')
+    document.querySelector('img[alt="player2-picture"]').src =
+      './resources/IMG_4262.png'
+  }
+}
 
 /* ---------- ADDING PLAYER NAMES FUNCTION----------*/
 
