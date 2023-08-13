@@ -45,14 +45,20 @@ let player1Input = document.querySelector('.player1-input')
 let player2Input = document.querySelector('.player2-input')
 /* ------  PLAYER INPUT ------  */
 
-document.querySelector('.player2-input').classList.add('hidden')
-document.querySelector('.player2-input--name').classList.add('hidden')
-
 /* ---------- INIT ----------*/
+
 let currentPlayer = 'X'
 let randomPlayer
 let gameEnded = false
 let scores = [0, 0]
+
+const removeElInit = function () {
+  player2Input.classList.add('hidden')
+  document.querySelector('.player2-input--name').classList.add('hidden')
+  document.querySelector('.player1-input--name').classList.add('hidden')
+  document.querySelector('.players').classList.add('hidden')
+}
+removeElInit()
 
 const randomPlayerFunc = () => {
   randomPlayer = Math.ceil(Math.random() * 2)
@@ -71,89 +77,52 @@ grid3x3.forEach(gridEl => {
 
 /* ---------- ADDING PLAYER NAMES FUNCTION----------*/
 
-const nesto = function (
-  playerInput,
-  playerName,
-  activePlayer,
-  nonActivePlayer
-) {
-  if (playerInput.value === '') {
-    alert('You have to add a name')
-  } else if (
-    playerInput.value !== '' &&
-    !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)
-  ) {
-    alert('Enter full name')
-  } else {
-    playerName.textContent = playerInput.value
-    document.querySelector('.player1-input').classList.add('hidden')
-    document.querySelector('.player1-input--name').classList.add('hidden')
-    document.querySelector('.player2-input').classList.remove('hidden')
-    document.querySelector('.player2-input--name').classList.remove('hidden')
-    nonActivePlayer.classList.remove('active--player')
-    activePlayer.classList.add('active--player')
-    return true
-  }
-}
 document.addEventListener('keyup', function (e) {
   e.preventDefault()
   if (e.key === 'Enter') {
-    if (
-      currentPlayer === 'X' &&
-      nesto(player1Input, player1Name, player1, player2)
+    if (player1Input.value === '') {
+      alert('You have to add a name')
+    } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
+      alert(`Enter full name`)
+    } else if (
+      player1Input.value !== '' &&
+      player1Input.value !== 'Ena Bejtic' &&
+      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
     ) {
-      nesto(player1Input, player1Name, player1, player2)
-      currentPlayer = 'O'
+      player1Name.textContent = player1Input.value
+      document.querySelector('.player1-input').classList.add('hidden')
+      document.querySelector('.player1-input--name').classList.add('hidden')
+      document.querySelector('.player2-input').classList.remove('hidden')
+      document.querySelector('.player2-input--name').classList.remove('hidden')
+      player1.classList.remove('active--player')
+      player2.classList.add('active--player')
+    } else {
+      ena()
+    }
+    if (player2Input.value === '') {
+      alert('You have to add a name')
+    } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
+      alert('Enter full name')
+    } else if (
+      player2Input.value !== '' &&
+      player2Input.value !== 'Ena Bejtic' &&
+      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+    ) {
+      player2Name.textContent = player2Input.value
+      document.querySelector('.player2-input').classList.add('hidden')
+      document.querySelector('.player2-input--name').classList.add('hidden')
+      game.classList.remove('hidden')
+      resetScoreBtn.classList.remove('hidden')
+      player1.classList.add('active--player')
+      player2.classList.remove('active--player')
+      currentPlayer
+      randomPlayerFunc()
       switchPlayer()
-    } else nesto(player2Input, player2Name, player2, player1)
-    game.classList.remove('hidden')
-    resetScoreBtn.classList.remove('hidden')
-    currentPlayer
-    randomPlayerFunc()
-    switchPlayer()
+    } else {
+      ena()
+    }
   }
 })
-
-// document.addEventListener('keyup', function (e) {
-//   e.preventDefault()
-//   if (e.key === 'Enter') {
-//     if (player1Input.value === '') {
-//       alert('You have to add a name')
-//     } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
-//       alert(`Enter full name`)
-//     } else if (
-//       player1Input.value !== '' &&
-//       /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
-//     ) {
-//       player1Name.textContent = player1Input.value
-//       document.querySelector('.player1-input').classList.add('hidden')
-//       document.querySelector('.player1-input--name').classList.add('hidden')
-//       document.querySelector('.player2-input').classList.remove('hidden')
-//       document.querySelector('.player2-input--name').classList.remove('hidden')
-//       player1.classList.remove('active--player')
-//       player2.classList.add('active--player')
-//     }
-//     if (player2Input.value === '') {
-//       alert('You have to add a name')
-//     } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
-//       alert('Enter full name')
-//     } else if (
-//       player2Input.value !== '' &&
-//       /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
-//     ) {
-//       player2Name.textContent = player2Input.value
-//       document.querySelector('.player2-input').classList.add('hidden')
-//       document.querySelector('.player2-input--name').classList.add('hidden')
-//       game.classList.remove('hidden')
-//       resetScoreBtn.classList.remove('hidden')
-//       player1.classList.add('active--player')
-//       player2.classList.remove('active--player')
-//       currentPlayer
-//       randomPlayerFunc()
-//       switchPlayer()
-//     }
-//   }
-// })
 
 const ena = function () {
   if (
@@ -175,13 +144,16 @@ const ena = function () {
     /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value) &&
     player2Input.value === 'Ena Bejtic'
   ) {
-    player2Name.textContent = 'Ćoćkica'
+    player2Name.textContent = player2Input.value
     document.querySelector('.player2-input').classList.add('hidden')
     document.querySelector('.player2-input--name').classList.add('hidden')
-    document.querySelector('.player1-input').classList.remove('hidden')
-    document.querySelector('.player1-input--name').classList.remove('hidden')
+    game.classList.remove('hidden')
+    resetScoreBtn.classList.remove('hidden')
     player1.classList.add('active--player')
     player2.classList.remove('active--player')
+    currentPlayer
+    randomPlayerFunc()
+    switchPlayer()
     document.querySelector('img[alt="player2-picture"]').src =
       './resources/IMG_4262.png'
   }
@@ -222,16 +194,16 @@ const checkWinner = function (player) {
       grid3x3[b].textContent === player &&
       grid3x3[c].textContent === player
     ) {
-      console.log(sequence)
-      if (player === 'X') {
-        scores[0]++
-        player1Score.textContent = `Score: ${scores[0]}`
-        console.log(scores)
-      } else {
-        scores[1]++
-        player2Score.textContent = `Score: ${scores[1]}`
-        console.log(scores)
-      }
+      // console.log(sequence)
+      // if (player === 'X') {
+      //   scores[0]++
+      //   player1Score.textContent = `Score: ${scores[0]}`
+      //   console.log(scores)
+      // } else {
+      //   scores[1]++
+      //   player2Score.textContent = `Score: ${scores[1]}`
+      //   console.log(scores)
+      // }
       return true
     }
   }
@@ -354,7 +326,7 @@ const mode1v1Game = function (grid) {
           scores[currentPlayer === 'X' ? 0 : 1]++
           currentPlayer === 'X'
             ? (player1Score.textContent = `Score: ${scores[0]}`)
-            : (player1Score.textContent = `Score: ${scores[1]}`)
+            : (player2Score.textContent = `Score: ${scores[1]}`)
           gameEnded = true
           displayModal(currentPlayer)
           randomPlayerFunc()
