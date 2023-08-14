@@ -342,3 +342,72 @@ div img {
   border: 3px solid #ffcc00; /* Example color change */
   transition: border-color 0.5s ease;
 }
+
+.game-modes {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.mode-button {
+  background-color: #753682;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  margin: 0 10px;
+  transition: background-color 0.3s;
+}
+
+.mode-button:hover {
+  background-color: #bf2e34;
+}
+
+/* Hide game mode buttons once a mode is selected */
+.hidden {
+  display: none;
+}
+
+.modeModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background-color: rgba(0, 0, 0, 0.6); */
+  /* z-index: 1; */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  /* padding: 200px; */
+  border-radius: 5px;
+  width: 450px;
+  height: 550px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  padding-top: 10px;
+}
+
+/* Style for game mode buttons inside the modal */
+.modal-content .mode-button {
+  margin: 10px auto;
+  /* padding: 10px 20px; */
+  background-color: #753682;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.modal-content .mode-button:hover {
+  background-color: #bf2e34;
+}
