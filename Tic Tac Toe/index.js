@@ -15,8 +15,8 @@ const winningSequence = [
 ]
 
 /* ------ GRID SELECTOR ------ */
-const gridMain = document.querySelector('.grid')
-const grid3x3 = document.querySelectorAll('.grid > div')
+const gridMain = document.querySelector('.gameGrid')
+const grid3x3 = document.querySelectorAll('.gameGrid > div')
 const clickSound = document.querySelector('.clickSound')
 const game = document.querySelector('.game')
 game.classList.add('hidden')
@@ -52,8 +52,8 @@ let randomPlayer
 let gameEnded = false
 let scores = [0, 0]
 
-const modeModal = document.getElementById('modeModal')
-const modeButtons = document.querySelectorAll('.mode-button')
+// const modeModal = document.getElementById('modeModal')
+// const modeButtons = document.querySelectorAll('.mode-button')
 
 const removeElInit = function () {
   player2Input.classList.add('hidden')
@@ -61,7 +61,18 @@ const removeElInit = function () {
   document.querySelector('.player1-input--name').classList.add('hidden')
   document.querySelector('.players').classList.add('hidden')
 }
-removeElInit()
+// removeElInit()
+
+// ************************ LJEP ZA POCETAK ************************ //  
+
+player2Input.classList.add('hidden')
+document.querySelector('.player2-input').classList.add('hidden')
+document.querySelector('.player2-input--name').classList.add('hidden')
+
+// ************************ LJEP ZA POCETAK ************************ //  
+
+
+
 
 const randomPlayerFunc = () => {
   randomPlayer = Math.ceil(Math.random() * 2)
@@ -356,22 +367,22 @@ const mode1v1Game = function (grid) {
 mode1v1Game(grid3x3)
 
 // Show the mode selection modal
-document.addEventListener('DOMContentLoaded', function () {
-  modeModal.classList.remove('hidden')
-})
+// document.addEventListener('DOMContentLoaded', function () {
+//   modeModal.classList.remove('hidden')
+// })
 
-// Event listeners for mode buttons
-modeButtons.forEach(button => {
-  button.addEventListener('click', function () {
-    const mode = this.id
+// // Event listeners for mode buttons
+// modeButtons.forEach(button => {
+//   button.addEventListener('click', function () {
+//     const mode = this.id
 
-    if (mode === 'mode1v1') {
-      mode1v1Game(grid3x3) // Call 1vs1 game function
-    } else if (mode === 'mode1vPC') {
-      mode1vPC(grid3x3) // Call 1vsPC game function
-    }
-  })
-})
-modeModal.classList.remove('hidden') // Hide modal after mode selection
+//     if (mode === 'mode1v1') {
+//       mode1v1Game(grid3x3) // Call 1vs1 game function
+//     } else if (mode === 'mode1vPC') {
+//       mode1vPC(grid3x3) // Call 1vsPC game function
+//     }
+//   })
+// })
+// modeModal.classList.add('hidden') // Hide modal after mode selection
 // modal.classList.add('hidden')
 // overlay.classList.remove('hidden')

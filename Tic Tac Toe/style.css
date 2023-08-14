@@ -31,7 +31,7 @@ body {
   height: 50vh;
 }
 
-.grid {
+.gameGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -41,7 +41,7 @@ body {
   padding: 2px;
 }
 
-.grid div {
+.gameGrid div {
   background-color: #fff;
   display: flex;
   justify-content: center;
@@ -307,12 +307,12 @@ div img {
     padding: 0.8em 1.5em;
   }
 
-  .grid {
+  .gameGrid {
     width: 250px;
     height: 250px;
   }
 
-  .grid div {
+  .gameGrid div {
     font-size: 36px;
   }
 
@@ -329,12 +329,12 @@ div img {
   }
 }
 
-.grid div:hover {
+.gameGrid div:hover {
   transform: scale(1.05);
 }
 
-.grid div[data-marker='X'],
-.grid div[data-marker='O'] {
+.gameGrid div[data-marker='X'],
+.gameGrid div[data-marker='O'] {
   animation: spin 0.5s infinite alternate; /* Example rotation animation */
 }
 
@@ -343,7 +343,7 @@ div img {
   transition: border-color 0.5s ease;
 }
 
-.game-modes {
+/* .game-modes {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
@@ -363,11 +363,6 @@ div img {
 
 .mode-button:hover {
   background-color: #bf2e34;
-}
-
-/* Hide game mode buttons once a mode is selected */
-.hidden {
-  display: none;
 }
 
 .modeModal {
@@ -392,10 +387,10 @@ div img {
 }
 
 .modal-content h2 {
+  font-size: 2rem;
   padding-top: 10px;
 }
 
-/* Style for game mode buttons inside the modal */
 .modal-content .mode-button {
   margin: 10px auto;
   /* padding: 10px 20px; */
@@ -410,4 +405,4 @@ div img {
 
 .modal-content .mode-button:hover {
   background-color: #bf2e34;
-}
+} */
