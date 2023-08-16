@@ -52,27 +52,21 @@ let randomPlayer
 let gameEnded = false
 let scores = [0, 0]
 
-// const modeModal = document.getElementById('modeModal')
-// const modeButtons = document.querySelectorAll('.mode-button')
-
 const removeElInit = function () {
   player2Input.classList.add('hidden')
   document.querySelector('.player2-input--name').classList.add('hidden')
   document.querySelector('.player1-input--name').classList.add('hidden')
   document.querySelector('.players').classList.add('hidden')
 }
-// removeElInit()
+removeElInit()
 
-// ************************ LJEP ZA POCETAK ************************ //  
+// ************************ LJEP ZA POCETAK ************************ //
 
 player2Input.classList.add('hidden')
 document.querySelector('.player2-input').classList.add('hidden')
 document.querySelector('.player2-input--name').classList.add('hidden')
 
-// ************************ LJEP ZA POCETAK ************************ //  
-
-
-
+// ************************ LJEP ZA POCETAK ************************ //
 
 const randomPlayerFunc = () => {
   randomPlayer = Math.ceil(Math.random() * 2)
@@ -153,12 +147,13 @@ const ena = function () {
     player2.classList.add('active--player')
     document.querySelector('img[alt="player1-picture"]').src =
       './resources/IMG_4262.png'
-  } else if (
+  }
+  if (
     player2Input.value !== '' &&
     /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value) &&
     player2Input.value === 'Ena Bejtic'
   ) {
-    player2Name.textContent = player2Input.value
+    player2Name.textContent = 'Ćoćkica'
     document.querySelector('.player2-input').classList.add('hidden')
     document.querySelector('.player2-input--name').classList.add('hidden')
     game.classList.remove('hidden')
@@ -366,23 +361,5 @@ const mode1v1Game = function (grid) {
 }
 mode1v1Game(grid3x3)
 
-// Show the mode selection modal
-// document.addEventListener('DOMContentLoaded', function () {
-//   modeModal.classList.remove('hidden')
-// })
-
-// // Event listeners for mode buttons
-// modeButtons.forEach(button => {
-//   button.addEventListener('click', function () {
-//     const mode = this.id
-
-//     if (mode === 'mode1v1') {
-//       mode1v1Game(grid3x3) // Call 1vs1 game function
-//     } else if (mode === 'mode1vPC') {
-//       mode1vPC(grid3x3) // Call 1vsPC game function
-//     }
-//   })
-// })
-// modeModal.classList.add('hidden') // Hide modal after mode selection
 // modal.classList.add('hidden')
 // overlay.classList.remove('hidden')
