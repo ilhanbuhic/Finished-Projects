@@ -343,12 +343,6 @@ div img {
   transition: border-color 0.5s ease;
 }
 
-.game-modes {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
 .mode-button {
   background-color: #753682;
   color: white;
@@ -371,13 +365,12 @@ div img {
   align-items: center;
   height: 100vh;
   /* background-color: rgba(0, 0, 0, 0.6); */
-  background-image: linear-gradient(to top left, #753682, #bf2e34);
+  /* background-image: linear-gradient(to top left, #753682, #bf2e34); */
   /* z-index: 1; */
 }
 
 .modal-content {
   display: flex;
-  background-image: linear-gradient(to top right, #753682, #bf2e34);
   flex-direction: column;
   background-color: white;
   /* padding: 200px; */
@@ -386,7 +379,10 @@ div img {
   height: 550px;
   text-align: center;
   transform: perspective(1000px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  background-color: rgba(225, 225, 225, 0.5);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(225, 225, 225, 0.3);
 }
 
 .modal-content h2 {
@@ -411,7 +407,7 @@ div img {
   background-color: #bf2e34;
 }
 
-.game-mode {
+.game-mode--grid {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -426,7 +422,8 @@ div img {
   gap: 8px;
   width: 150px;
   height: 150px;
-  padding: 2px;
+  /* padding: 2px; */
+  transition: padding 0.5s ease;
 }
 
 .game-mode--grid3x3 div {
@@ -441,6 +438,24 @@ div img {
   transition: background-color 0.3s ease;
 }
 
+.game-mode--grid3x3 div:hover {
+  background: #ff3080;
+  /* animation: myAnimation 1s ease-out; */
+}
+
+.game-mode--grid3x3:hover {
+  padding: 15px;
+  border-radius: 10px;
+  background: rgb(182, 15, 253);
+  background: linear-gradient(
+    90deg,
+    rgba(182, 15, 253, 1) 0%,
+    rgba(150, 24, 255, 1) 65%,
+    rgba(104, 39, 252, 1) 100%
+  );
+  /* animation: myAnimation 1s infinite alternate; */
+}
+
 .game-mode--grid5x5 {
   position: relative;
   display: grid;
@@ -449,11 +464,11 @@ div img {
   gap: 5px;
   width: 150px;
   height: 150px;
-  padding: 2px;
+  padding: 20px;
 }
 
 .game-mode--grid5x5 div {
-  background: #878787;
+  background: #dedede;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -469,9 +484,9 @@ div img {
   height: 100%;
   background: linear-gradient(
     135deg,
-    transparent 49%,
-    #753682 50%,
-    transparent 52%
+    transparent 50%,
+    #6926ff 50%,
+    transparent 51.5%
   );
   pointer-events: none; /* This ensures that the line doesn't interfere with clicking */
 }
@@ -480,9 +495,44 @@ div img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14rem;
+  gap: 14.5rem;
   margin-top: 1rem;
   color: #fff;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.dropdown {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  backdrop-filter: blur(0px);
+  background-color: rgba(225, 225, 225, 0.5);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(225, 225, 225, 0.3);
+}
+
+.game-mode--play,
+.game-mode--difficulty {
+  margin-top: 3rem;
+}
+
+.game-mode--play > label,
+.game-mode--difficulty > label {
+  display: block;
+  font-size: 1.5rem;
+  padding-top: 10px;
+  color: #fff;
+}
+
+.game-mode--play select,
+.game-mode--difficulty select {
+  margin-top: 1rem;
+  text-align: left;
+  text-align-last: center;
 }
