@@ -573,3 +573,7 @@ div img {
   border: 1px solid rgba(225, 225, 225, 0.3);
   transition: backdrop-filter 0.5s ease;
 }
+
+.player1-input::placeholder {
+  color: red; /* Change this to the desired color */
+}

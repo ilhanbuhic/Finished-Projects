@@ -132,7 +132,7 @@ gameModePlayDP.addEventListener('change', function (event) {
 //   }
 // })
 
-const ena = function () {
+const person = function () {
   if (
     player1Input.value !== '' &&
     /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value) &&
@@ -351,11 +351,18 @@ function mode1vPC(grid) {
   // }
 }
 
-const playerFillInput = function (playerInput, playerName, player1, player2) {
+const playerFillInput = function (
+  playerInput,
+  playerName,
+  playerInputName,
+  player1,
+  player2
+) {
   if (playerInput.value === '') {
-    alert('You have to add a name')
+    playerInput.placeholder = 'You have to add a name'
   } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)) {
-    alert(`Enter full name`)
+    playerInput.value = ''
+    playerInput.placeholder = 'Enter full name'
   } else if (
     playerInput.value !== '' &&
     playerInput.value !== 'Ena Bejtic' &&
@@ -363,13 +370,11 @@ const playerFillInput = function (playerInput, playerName, player1, player2) {
   ) {
     playerName.textContent = playerInput.value
     playerInput.classList.add('hidden')
-    document.querySelector(`.${player1}-input--name`).classList.add('hidden')
-    document.querySelector(`.${player2}-input`).classList.remove('hidden')
-    document.querySelector(`.${player2}-input--name`).classList.remove('hidden')
+    playerInputName.classList.add('hidden')
     player1.classList.remove('active--player')
     player2.classList.add('active--player')
   } else {
-    ena()
+    person()
   }
 }
 
@@ -377,30 +382,49 @@ const mode1v1Game = function (grid) {
   document.addEventListener('keyup', function (e) {
     e.preventDefault()
     if (e.key === 'Enter') {
-      playerFillInput(player1Input, player1Name, player1, player2)
-
-      if (player2Input.value === '') {
-        alert('You have to add a name')
-      } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
-        alert('Enter full name')
-      } else if (
-        player2Input.value !== '' &&
-        player2Input.value !== 'Ena Bejtic' &&
-        /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
-      ) {
-        player2Name.textContent = player2Input.value
-        document.querySelector('.player2-input').classList.add('hidden')
-        document.querySelector('.player2-input--name').classList.add('hidden')
-        player1.classList.add('active--player')
-        player2.classList.remove('active--player')
+      if (!checkPlayerFillInputs) {
+        playerFillInput(
+          player1Input,
+          player1Name,
+          player1InputName,
+          player1,
+          player2
+        )
+        document.querySelector('.player2-input').classList.remove('hidden')
+        document
+          .querySelector('.player2-input--name')
+          .classList.remove('hidden')
+        checkPlayerFillInputs = true
+        console.log(checkPlayerFillInputs)
+      } else {
+        playerFillInput(
+          player2Input,
+          player2Name,
+          player2InputName,
+          player1,
+          player2
+        )
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
         currentPlayer
         randomPlayerFunc()
         switchPlayer()
-      } else {
-        ena()
       }
+
+      // if (player2Input.value === '') {
+      //   alert('You have to add a name')
+      // } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
+      //   alert('Enter full name')
+      // } else if (
+      //   player2Input.value !== '' &&
+      //   player2Input.value !== 'Ena Bejtic' &&
+      //   /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+      // ) {
+      //   player2Name.textContent = player2Input.value
+      //   document.querySelector('.player2-input').classList.add('hidden')
+      //   document.querySelector('.player2-input--name').classList.add('hidden')
+      //   player1.classList.add('active--player')
+      //   player2.classList.remove('active--player')
     }
   })
   resetGame(grid3x3)
