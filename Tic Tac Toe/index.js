@@ -351,80 +351,53 @@ function mode1vPC(grid) {
   // }
 }
 
-const playerFillInput = function (
-  playerInput,
-  playerName,
-  playerInputName,
-  player1,
-  player2
-) {
-  if (playerInput.value === '') {
-    playerInput.placeholder = 'You have to add a name'
-  } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)) {
-    playerInput.value = ''
-    playerInput.placeholder = 'Enter full name'
-  } else if (
-    playerInput.value !== '' &&
-    playerInput.value !== 'Ena Bejtic' &&
-    /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)
-  ) {
-    playerName.textContent = playerInput.value
-    playerInput.classList.add('hidden')
-    playerInputName.classList.add('hidden')
-    player1.classList.remove('active--player')
-    player2.classList.add('active--player')
-  } else {
-    person()
-  }
-}
-
 const mode1v1Game = function (grid) {
   document.addEventListener('keyup', function (e) {
     e.preventDefault()
     if (e.key === 'Enter') {
-      if (!checkPlayerFillInputs) {
-        playerFillInput(
-          player1Input,
-          player1Name,
-          player1InputName,
-          player1,
-          player2
-        )
+      if (player1Input.value === '') {
+        alert('You have to add a name')
+      } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
+        alert(`Enter full name`)
+      } else if (
+        player1Input.value !== '' &&
+        player1Input.value !== 'Ena Bejtic' &&
+        /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+      ) {
+        player1Name.textContent = player1Input.value
+        document.querySelector('.player1-input').classList.add('hidden')
+        document.querySelector('.player1-input--name').classList.add('hidden')
         document.querySelector('.player2-input').classList.remove('hidden')
         document
           .querySelector('.player2-input--name')
           .classList.remove('hidden')
-        checkPlayerFillInputs = true
-        console.log(checkPlayerFillInputs)
+        player1.classList.remove('active--player')
+        player2.classList.add('active--player')
       } else {
-        playerFillInput(
-          player2Input,
-          player2Name,
-          player2InputName,
-          player1,
-          player2
-        )
+        ena()
+      }
+      if (player2Input.value === '') {
+        alert('You have to add a name')
+      } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
+        alert('Enter full name')
+      } else if (
+        player2Input.value !== '' &&
+        player2Input.value !== 'Ena Bejtic' &&
+        /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+      ) {
+        player2Name.textContent = player2Input.value
+        document.querySelector('.player2-input').classList.add('hidden')
+        document.querySelector('.player2-input--name').classList.add('hidden')
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
+        player1.classList.add('active--player')
+        player2.classList.remove('active--player')
         currentPlayer
         randomPlayerFunc()
         switchPlayer()
+      } else {
+        ena()
       }
-
-      // if (player2Input.value === '') {
-      //   alert('You have to add a name')
-      // } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
-      //   alert('Enter full name')
-      // } else if (
-      //   player2Input.value !== '' &&
-      //   player2Input.value !== 'Ena Bejtic' &&
-      //   /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
-      // ) {
-      //   player2Name.textContent = player2Input.value
-      //   document.querySelector('.player2-input').classList.add('hidden')
-      //   document.querySelector('.player2-input--name').classList.add('hidden')
-      //   player1.classList.add('active--player')
-      //   player2.classList.remove('active--player')
     }
   })
   resetGame(grid3x3)
@@ -471,7 +444,6 @@ gameModeBtn.addEventListener('click', function () {
     init()
     mode1v1Game(grid3x3)
   } else {
-    console.log(gameModeGrid3x3ClickCheck, gameModePlaySelected)
   }
 })
 
@@ -485,25 +457,3 @@ gameModeBtn.addEventListener('click', function () {
     console.log(gameModeGrid3x3ClickCheck, gameModePlaySelected)
   }
 })
-
-// if (player1Input.value === '') {
-//   alert('You have to add a name')
-// } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
-//   alert(`Enter full name`)
-// } else if (
-//   player1Input.value !== '' &&
-//   player1Input.value !== 'Ena Bejtic' &&
-//   /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
-// ) {
-//   player1Name.textContent = player1Input.value
-//   document.querySelector('.player1-input').classList.add('hidden')
-//   document.querySelector('.player1-input--name').classList.add('hidden')
-//   document.querySelector('.player2-input').classList.remove('hidden')
-//   document
-//     .querySelector('.player2-input--name')
-//     .classList.remove('hidden')
-//   player1.classList.remove('active--player')
-//   player2.classList.add('active--player')
-// } else {
-//   ena()
-// }
