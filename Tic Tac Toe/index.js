@@ -14,57 +14,23 @@ const winningSequence = [
   [2, 4, 6],
 ]
 
-/* ------ GRID SELECTOR ------ */
-const gridMain = document.querySelector('.gameGrid')
-const grid3x3 = document.querySelectorAll('.gameGrid > div')
-const clickSound = document.querySelector('.clickSound')
-const game = document.querySelector('.game')
-game.classList.add('hidden')
-/* ------ GRID SELECTOR ------ */
-
-/* ------ GAME ELEMENTS SELECTOR ------ */
-let modal = document.querySelector('.modal')
-let overlay = document.querySelector('.overlay')
-let modalP = document.querySelector('.modalP')
-let restartBtn = document.querySelector('.restart-button')
-let resetScoreBtn = document.querySelector('.reset-score--button')
-resetScoreBtn.classList.add('hidden')
-/* ------ GRID SELECTOR ------ */
-
-/* ------ PLAYER 1-1 SELECTOR ------ */
-let player1 = document.querySelector('.player1')
-let player2 = document.querySelector('.player2')
-let player1Name = document.querySelector('.player1-name')
-let player2Name = document.querySelector('.player2-name')
-let player1Score = document.querySelector('.player1--score')
-let player2Score = document.querySelector('.player2--score')
-/* ------ GRID SELECTOR ------ */
-
-/* ------  PLAYER INPUT ------  */
-let player1Input = document.querySelector('.player1-input')
-let player2Input = document.querySelector('.player2-input')
-/* ------  PLAYER INPUT ------  */
-
 /* ---------- INIT ----------*/
 
-let currentPlayer = 'X'
-let randomPlayer
-let gameEnded = false
-let scores = [0, 0]
-
-const removeElInit = function () {
-  player2Input.classList.add('hidden')
+const init = function () {
+  currentPlayer = 'X'
+  randomPlayer
+  gameEnded = false
+  scores = [0, 0]
+  document.querySelector('.player1-input--name').classList.remove('hidden')
   document.querySelector('.player2-input--name').classList.add('hidden')
-  document.querySelector('.player1-input--name').classList.add('hidden')
-  document.querySelector('.players').classList.add('hidden')
 }
-removeElInit()
 
 // ************************ LJEP ZA POCETAK ************************ //
 
 player2Input.classList.add('hidden')
 document.querySelector('.player2-input').classList.add('hidden')
 document.querySelector('.player2-input--name').classList.add('hidden')
+gameModeBtn.classList.add('hidden')
 
 // ************************ LJEP ZA POCETAK ************************ //
 
@@ -77,13 +43,47 @@ const randomPlayerFunc = () => {
 
 grid3x3.forEach(gridEl => {
   gridEl.addEventListener('click', function () {
-    clickSound.currentTime = 0.05
+    clickSound.currentTime = 0.09
     clickSound.play()
   })
 })
 /* ---------- INIT ----------*/
 
 /* ---------- ADDING PLAYER NAMES FUNCTION----------*/
+
+gameModeGrid3x3.addEventListener('click', function () {
+  // const gameModeDifficultySelected = event.target.value
+  gameModeGrid3x3.style.padding = '15px'
+  gameModeGrid3x3.style.borderRadius = '10px'
+  gameModeGrid3x3.style.background =
+    'linear-gradient(90deg, rgba(182, 15, 253, 1) 0%, rgba(150, 24, 255, 1) 65%, rgba(104, 39, 252, 1) 100%)'
+  clickSound.currentTime = 0.09
+  clickSound.play()
+  gameModeGrid3x3ClickCheck = true
+  if (gameModeGrid3x3ClickCheck) {
+    console.log('Checked')
+    document.querySelector('.game-mode--play').classList.remove('hidden')
+    gameModeBtn.classList.remove('hidden')
+    document.querySelector('.modal-content').style.height = '470px'
+  } else if (!gameModeGrid3x3ClickCheck) {
+    document.querySelector('.game-mode--play').classList.add('hidden')
+    gameModeBtn.classList.add('hidden')
+  }
+})
+
+gameModePlayDP.addEventListener('change', function (event) {
+  gameModePlaySelected = event.target.value
+
+  if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vs1') {
+    document.querySelector('.game-mode--difficulty').classList.add('hidden')
+    document.querySelector('.modal-content').style.height = '450px'
+    // gameModePlaySelected = '1vs1'
+  } else if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vsPC') {
+    document.querySelector('.game-mode--difficulty').classList.remove('hidden')
+    document.querySelector('.modal-content').style.height = '580px'
+    gameModePlaySelected = '1vsPC'
+  }
+})
 
 document.addEventListener('keyup', function (e) {
   e.preventDefault()
@@ -359,7 +359,17 @@ const mode1v1Game = function (grid) {
     })
   })
 }
-mode1v1Game(grid3x3)
 
-// modal.classList.add('hidden')
-// overlay.classList.remove('hidden')
+gameModeBtn.addEventListener('click', function () {
+  clickSound.currentTime = 0.09
+  clickSound.play()
+  if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vs1') {
+    modeModal.style.display = 'none'
+    document.body.classList.add('glassmorphism')
+
+    init()
+    mode1v1Game(grid3x3)
+  } else {
+    console.log(gameModeGrid3x3ClickCheck, gameModePlaySelected)
+  }
+})

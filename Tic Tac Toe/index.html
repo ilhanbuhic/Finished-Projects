@@ -10,7 +10,7 @@
   </head>
   <body>
     <main>
-      <div class="modeModal hidden" id="modeModal">
+      <div class="modeModal" id="modeModal">
         <div class="modal-content">
           <h2>Choose Game Mode</h2>
           <div class="game-mode">
@@ -60,25 +60,24 @@
             </div>
             <div class="game-mode--play">
               <label for="game-mode">Select Game Mode:</label>
-              <select id="" class="dropdown">
+              <select id="gameModePlay" class="dropdown">
                 <option value="1vs1">1&nbsp;vs&nbsp;1</option>
                 <option value="1vsPC">1&nbsp;vs&nbsp;PC</option>
               </select>
             </div>
             <div class="game-mode--difficulty">
               <label for="game-mode">Select Game Mode:</label>
-              <select id="" class="dropdown">
+              <select id="gameModeDifficulty" class="dropdown">
                 <option value="1vs1">Easy</option>
                 <option value="1vsPC">Hard</option>
               </select>
             </div>
+            <button class="gameMode-btn">Start</button>
           </div>
-          <!-- <button class="mode-button" id="mode1v1">1vs1</button>
-          <button class="mode-button" id="mode1vPC">1vsPC</button> -->
         </div>
       </div>
       <div class="player-input-names">
-        <div class="player1-input--name">
+        <div class="player1-input--name hidden">
           <label for="name">Player 1:</label>
           <input class="player1-input" type="name" name="" id="" />
         </div>
@@ -122,6 +121,10 @@
     <audio class="clickSound">
       <source src="./resources/click.mp3" type="audio/mpeg" />
     </audio>
+    <script src="./grid-selectors.js"></script>
+    <script src="./game-elements.js"></script>
+    <script src="./players-selector.js"></script>
+    <script src="./global-scopeVar.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
