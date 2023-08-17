@@ -21,6 +21,7 @@ const init = function () {
   randomPlayer
   gameEnded = false
   scores = [0, 0]
+  document.querySelector('.players').classList.remove('hidden')
   document.querySelector('.player1-input--name').classList.remove('hidden')
   document.querySelector('.player2-input--name').classList.add('hidden')
 }
@@ -52,7 +53,6 @@ grid3x3.forEach(gridEl => {
 /* ---------- ADDING PLAYER NAMES FUNCTION----------*/
 
 gameModeGrid3x3.addEventListener('click', function () {
-  // const gameModeDifficultySelected = event.target.value
   gameModeGrid3x3.style.padding = '15px'
   gameModeGrid3x3.style.borderRadius = '10px'
   gameModeGrid3x3.style.background =
@@ -85,52 +85,52 @@ gameModePlayDP.addEventListener('change', function (event) {
   }
 })
 
-document.addEventListener('keyup', function (e) {
-  e.preventDefault()
-  if (e.key === 'Enter') {
-    if (player1Input.value === '') {
-      alert('You have to add a name')
-    } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
-      alert(`Enter full name`)
-    } else if (
-      player1Input.value !== '' &&
-      player1Input.value !== 'Ena Bejtic' &&
-      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
-    ) {
-      player1Name.textContent = player1Input.value
-      document.querySelector('.player1-input').classList.add('hidden')
-      document.querySelector('.player1-input--name').classList.add('hidden')
-      document.querySelector('.player2-input').classList.remove('hidden')
-      document.querySelector('.player2-input--name').classList.remove('hidden')
-      player1.classList.remove('active--player')
-      player2.classList.add('active--player')
-    } else {
-      ena()
-    }
-    if (player2Input.value === '') {
-      alert('You have to add a name')
-    } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
-      alert('Enter full name')
-    } else if (
-      player2Input.value !== '' &&
-      player2Input.value !== 'Ena Bejtic' &&
-      /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
-    ) {
-      player2Name.textContent = player2Input.value
-      document.querySelector('.player2-input').classList.add('hidden')
-      document.querySelector('.player2-input--name').classList.add('hidden')
-      game.classList.remove('hidden')
-      resetScoreBtn.classList.remove('hidden')
-      player1.classList.add('active--player')
-      player2.classList.remove('active--player')
-      currentPlayer
-      randomPlayerFunc()
-      switchPlayer()
-    } else {
-      ena()
-    }
-  }
-})
+// document.addEventListener('keyup', function (e) {
+//   e.preventDefault()
+//   if (e.key === 'Enter') {
+//     if (player1Input.value === '') {
+//       alert('You have to add a name')
+//     } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
+//       alert(`Enter full name`)
+//     } else if (
+//       player1Input.value !== '' &&
+//       player1Input.value !== 'Ena Bejtic' &&
+//       /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+//     ) {
+//       player1Name.textContent = player1Input.value
+//       document.querySelector('.player1-input').classList.add('hidden')
+//       document.querySelector('.player1-input--name').classList.add('hidden')
+//       document.querySelector('.player2-input').classList.remove('hidden')
+//       document.querySelector('.player2-input--name').classList.remove('hidden')
+//       player1.classList.remove('active--player')
+//       player2.classList.add('active--player')
+//     } else {
+//       ena()
+//     }
+//     if (player2Input.value === '') {
+//       alert('You have to add a name')
+//     } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
+//       alert('Enter full name')
+//     } else if (
+//       player2Input.value !== '' &&
+//       player2Input.value !== 'Ena Bejtic' &&
+//       /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+//     ) {
+//       player2Name.textContent = player2Input.value
+//       document.querySelector('.player2-input').classList.add('hidden')
+//       document.querySelector('.player2-input--name').classList.add('hidden')
+//       game.classList.remove('hidden')
+//       resetScoreBtn.classList.remove('hidden')
+//       player1.classList.add('active--player')
+//       player2.classList.remove('active--player')
+//       currentPlayer
+//       randomPlayerFunc()
+//       switchPlayer()
+//     } else {
+//       ena()
+//     }
+//   }
+// })
 
 const ena = function () {
   if (
@@ -281,50 +281,128 @@ function performComputerMove() {
   }
 }
 
-// function mode1vPC(grid) {
-//   resetGame(grid)
-//   grid.forEach(function (gridEl, index) {
-//     gridEl.addEventListener('click', function () {
-//       if (!gridEl.textContent && !gameEnded) {
-//         gridEl.textContent = 'X' // Player always moves with 'X' in PC mode
+function mode1vPC(grid) {
+  player2Name.textContent = 'PC'
+  document.addEventListener('keyup', function (e) {
+    e.preventDefault()
+    if (e.key === 'Enter') {
+      if (player1Input.value === '') {
+        alert('You have to add a name')
+      } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
+        alert(`Enter full name`)
+      } else if (
+        player1Input.value !== '' &&
+        player1Input.value !== 'Ena Bejtic' &&
+        /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+      ) {
+        player1Name.textContent = player1Input.value
+        document.querySelector('.player1-input').classList.add('hidden')
+        document.querySelector('.player1-input--name').classList.add('hidden')
+        // document.querySelector('.player2-input').classList.remove('hidden')
+        player1.classList.remove('active--player')
+        game.classList.remove('hidden')
+        currentPlayer = 'X'
+        switchPlayer()
+      } else {
+        ena()
+      }
+    }
+  })
+  resetGame(grid)
+  currentPlayer = 'X'
+  console.log(currentPlayer)
+  grid.forEach(function (gridEl, index) {
+    gridEl.addEventListener('click', function () {
+      if (!gridEl.textContent && !gameEnded) {
+        gridEl.textContent = 'X' // Player always moves with 'X' in PC mode
 
-//         if (checkWinner('X')) {
-//           scores[0]++
-//           player1Score.textContent = `Score: ${scores[0]}`
-//           gameEnded = true
-//           displayModal('X')
-//           resetGame(grid)
-//         } else if (checkDraw(grid)) {
-//           displayModal()
-//           resetGame(grid)
-//           gameEnded = true
-//         } else {
-//           // setTimeout(performComputerMove, 1000) // PC moves right after player
-//           performComputerMove()
-//           if (checkWinner('O')) {
-//             scores[1]++
-//             player2Score.textContent = `Score: ${scores[1]}`
-//             gameEnded = true
-//             displayModal('O')
-//             resetGame(grid)
-//           } else if (checkDraw(grid)) {
-//             displayModal('Draw')
-//             resetGame(grid)
-//             gameEnded = true
-//           }
-//         }
-//       }
-//     })
-//   })
+        if (checkWinner('X')) {
+          scores[0]++
+          player1Score.textContent = `Score: ${scores[0]}`
+          gameEnded = true
+          displayModal('X')
+          resetGame(grid)
+        } else if (checkDraw(grid)) {
+          displayModal()
+          resetGame(grid)
+          gameEnded = true
+        } else {
+          // setTimeout(performComputerMove, 1000) // PC moves right after player
+          performComputerMove()
+          if (checkWinner('O')) {
+            scores[1]++
+            player2Score.textContent = `Score: ${scores[1]}`
+            gameEnded = true
+            displayModal('O')
+            resetGame(grid)
+          } else if (checkDraw(grid)) {
+            displayModal('Draw')
+            resetGame(grid)
+            gameEnded = true
+          }
+        }
+      }
+    })
+  })
 
-//   if (randomPlayer === 2) {
-//     // PC moves first if randomPlayer equals 2
-//     setTimeout(performComputerMove, 1000)
-//   }
-// }
-// mode1vPC(grid3x3)
+  // if (randomPlayer === 2) {
+  //   // PC moves first if randomPlayer equals 2
+  //   setTimeout(performComputerMove, 1000)
+  // }
+}
+
+const playerFillInput = function (playerInput, playerName, player1, player2) {
+  if (playerInput.value === '') {
+    alert('You have to add a name')
+  } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)) {
+    alert(`Enter full name`)
+  } else if (
+    playerInput.value !== '' &&
+    playerInput.value !== 'Ena Bejtic' &&
+    /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(playerInput.value)
+  ) {
+    playerName.textContent = playerInput.value
+    playerInput.classList.add('hidden')
+    document.querySelector(`.${player1}-input--name`).classList.add('hidden')
+    document.querySelector(`.${player2}-input`).classList.remove('hidden')
+    document.querySelector(`.${player2}-input--name`).classList.remove('hidden')
+    player1.classList.remove('active--player')
+    player2.classList.add('active--player')
+  } else {
+    ena()
+  }
+}
 
 const mode1v1Game = function (grid) {
+  document.addEventListener('keyup', function (e) {
+    e.preventDefault()
+    if (e.key === 'Enter') {
+      playerFillInput(player1Input, player1Name, player1, player2)
+
+      if (player2Input.value === '') {
+        alert('You have to add a name')
+      } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)) {
+        alert('Enter full name')
+      } else if (
+        player2Input.value !== '' &&
+        player2Input.value !== 'Ena Bejtic' &&
+        /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
+      ) {
+        player2Name.textContent = player2Input.value
+        document.querySelector('.player2-input').classList.add('hidden')
+        document.querySelector('.player2-input--name').classList.add('hidden')
+        player1.classList.add('active--player')
+        player2.classList.remove('active--player')
+        game.classList.remove('hidden')
+        resetScoreBtn.classList.remove('hidden')
+        currentPlayer
+        randomPlayerFunc()
+        switchPlayer()
+      } else {
+        ena()
+      }
+    }
+  })
   resetGame(grid3x3)
   grid.forEach(function (grid) {
     grid.addEventListener('click', function () {
@@ -366,10 +444,42 @@ gameModeBtn.addEventListener('click', function () {
   if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vs1') {
     modeModal.style.display = 'none'
     document.body.classList.add('glassmorphism')
-
     init()
     mode1v1Game(grid3x3)
   } else {
     console.log(gameModeGrid3x3ClickCheck, gameModePlaySelected)
   }
 })
+
+gameModeBtn.addEventListener('click', function () {
+  if (gameModePlaySelected === '1vsPC') {
+    modeModal.style.display = 'none'
+    document.body.classList.add('glassmorphism')
+    init()
+    mode1vPC(grid3x3)
+  } else {
+    console.log(gameModeGrid3x3ClickCheck, gameModePlaySelected)
+  }
+})
+
+// if (player1Input.value === '') {
+//   alert('You have to add a name')
+// } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
+//   alert(`Enter full name`)
+// } else if (
+//   player1Input.value !== '' &&
+//   player1Input.value !== 'Ena Bejtic' &&
+//   /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+// ) {
+//   player1Name.textContent = player1Input.value
+//   document.querySelector('.player1-input').classList.add('hidden')
+//   document.querySelector('.player1-input--name').classList.add('hidden')
+//   document.querySelector('.player2-input').classList.remove('hidden')
+//   document
+//     .querySelector('.player2-input--name')
+//     .classList.remove('hidden')
+//   player1.classList.remove('active--player')
+//   player2.classList.add('active--player')
+// } else {
+//   ena()
+// }
