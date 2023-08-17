@@ -88,7 +88,6 @@ div img {
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   padding: 1em 2em;
   border: none;
-  /* border-radius: 10% 25%; */
   color: #fff;
   font-weight: 500;
   font-size: 1.7rem;
@@ -107,7 +106,6 @@ div img {
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   padding: 1em 2em;
   border: none;
-  /* border-radius: 10% 25%; */
   color: #fff;
   font-weight: 500;
   font-size: 1.7rem;
@@ -130,176 +128,12 @@ div img {
   z-index: 5;
 }
 
-.players {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: row;
-  text-align: center;
-  margin-top: 10rem;
-  height: 13rem;
-  animation: fadeIn 1s ease forwards;
-}
-
-.player-input-names,
-.players {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 5rem;
-}
-
-.player1-input--name {
-  animation: fadeIn 1s ease forwards;
-}
-
-.player1,
-.player2 {
-  padding: 1rem 10rem;
-}
-
-.players h1,
-.players p {
-  text-align: center;
-}
-
-.players h1 {
-  color: #fff;
-  font-weight: 300;
-  font-size: 3rem;
-}
-
-.players p {
-  color: #fff;
-  font-weight: 300;
-  font-size: 2rem;
-}
-
-.players img {
-  width: 100px;
-  height: 100px;
-  border-radius: 10%;
-  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.4),
-    -2px -2px 4px 2px rgba(225, 225, 225, 0.4);
-}
-
-.player-input-names {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
-  font-size: 3rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.player-input-names input {
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  width: 60%;
-  /* background-color: #333; */
-  background-color: #fff;
-  color: rgba(0, 0, 0, 10);
-  font-size: 1.8rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.player-input-names input:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
-}
-
-.active--player {
-  padding: 1rem 10rem;
-  outline: 4px solid #79367e;
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5),
-    inset 0 0 5px 5px rgba(0, 0, 0, 0.3);
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
-  border-radius: 20%;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: all 0.4s ease;
-  /* backdrop-filter: blur(0px);
-  background-color: rgba(225, 225, 225, 0.5);
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(225, 225, 225, 0.3); */
-}
-
-.active--player:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.6),
-    inset 0 0 10px 10px rgba(0, 0, 0, 0.4);
-}
-
 .hidden {
   display: none;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
-/* Add a media query for smaller screens */
-@media only screen and (max-width: 768px) {
-  body {
-    height: auto;
-  }
 
-  label[for='name'] {
-    text-align: center;
-    /* margin-left: 20%; */
-    display: block;
-    width: 100%;
-  }
-
-  .players {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5rem;
-  }
-
-  .player-input-names,
-  .players {
-    flex-direction: row;
-  }
-
-  .player1,
-  .player2 {
-    padding: 1rem;
-  }
-
-  .player1 img,
-  .player2 img {
-    width: 70px;
-    height: 70px;
-  }
-
-  .player-input-names {
-    font-size: 2rem;
-  }
-
-  .player-input-names input {
-    padding: 0.8rem;
-    width: 80%;
-    font-size: 1.4rem;
-  }
-
-  .active--player {
-    padding: 1rem;
-    font-size: 1.5rem;
-  }
-}
-
-/* Additional media query for even smaller screens */
 @media only screen and (max-width: 480px) {
   .modal {
     width: 80%;
@@ -343,16 +177,6 @@ div img {
   transform: scale(1.05);
 }
 
-.gameGrid div[data-marker='X'],
-.gameGrid div[data-marker='O'] {
-  animation: spin 0.5s infinite alternate; /* Example rotation animation */
-}
-
-.winning-line {
-  border: 3px solid #ffcc00; /* Example color change */
-  transition: border-color 0.5s ease;
-}
-
 .mode-button {
   background-color: #753682;
   color: white;
@@ -378,7 +202,6 @@ div img {
 
 .modal-content {
   background-color: white;
-  /* padding: 200px; */
   border-radius: 10px;
   width: 450px;
   height: 350px;
@@ -399,7 +222,6 @@ div img {
 
 .modal-content .mode-button {
   margin: 10px auto;
-  /* padding: 10px 20px; */
   background-color: #753682;
   color: white;
   border: none;
@@ -428,7 +250,6 @@ div img {
   gap: 8px;
   width: 150px;
   height: 150px;
-  /* padding: 2px; */
   transition: padding 0.5s ease;
 }
 
@@ -446,7 +267,6 @@ div img {
 
 .game-mode--grid3x3 div:hover {
   background: #ff3080;
-  /* animation: myAnimation 1s ease-out; */
 }
 
 .game-mode--grid3x3:hover {
@@ -458,7 +278,6 @@ div img {
     rgba(150, 24, 255, 1) 65%,
     rgba(104, 39, 252, 1) 100%
   );
-  /* animation: myAnimation 1s infinite alternate; */
 }
 
 .game-mode--grid5x5 {
@@ -479,7 +298,6 @@ div img {
   justify-content: center;
   align-items: center;
   font-size: 48px;
-  /* transition: background-color 0.3s ease; */
 }
 
 .game-mode--grid5x5::before {
@@ -523,15 +341,6 @@ div img {
   margin-top: 3rem;
 }
 
-/* .game-mode--play > select,
-.game-mode--difficulty > select {
-  backdrop-filter: blur(10px);
-  background-color: rgba(225, 225, 225, 0.5);
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(225, 225, 225, 0.3);
-  transition: backdrop-filter 0.5s ease;
-} */
-
 .game-mode--play > label,
 .game-mode--difficulty > label {
   display: block;
@@ -572,8 +381,4 @@ div img {
   box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(225, 225, 225, 0.3);
   transition: backdrop-filter 0.5s ease;
-}
-
-.player1-input::placeholder {
-  color: red; /* Change this to the desired color */
 }
