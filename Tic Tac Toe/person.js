@@ -33,3 +33,15 @@ const ena = function () {
       './resources/IMG_4262.png'
   }
 }
+
+const checkForEna = function (name) {
+  let enaArr = []
+  for (const ena of name.split(' ')) {
+    enaArr.push(ena.toLowerCase())
+  }
+  let result = enaArr.join(' ')
+  let reversedResult = enaArr.reverse().join(' ')
+  return [result, reversedResult]
+}
+const [normalCase, reversedCase] = checkForEna('Ena Bejtic')
+console.log(normalCase, reversedCase)

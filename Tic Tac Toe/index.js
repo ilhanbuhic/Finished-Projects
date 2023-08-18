@@ -13,9 +13,6 @@ const winningSequence = [
   [0, 4, 8],
   [2, 4, 6],
 ]
-
-/* ---------- INIT ----------*/
-
 const init = function () {
   currentPlayer = 'X'
   randomPlayer
@@ -25,10 +22,6 @@ const init = function () {
   document.querySelector('.player1-input--name').classList.remove('hidden')
   document.querySelector('.player2-input--name').classList.add('hidden')
 }
-
-/* ---------- INIT ----------*/
-
-/* ---------- ADDING PLAYER NAMES FUNCTION----------*/
 
 gameModeGrid3x3.addEventListener('click', function () {
   gameModeGrid3x3.style.padding = '15px'
@@ -62,7 +55,6 @@ gameModePlayDP.addEventListener('change', function (event) {
   }
 })
 
-
 restartBtn.addEventListener('click', function () {
   resetGame(grid3x3)
   overlay.classList.add('hidden')
@@ -72,17 +64,15 @@ resetScoreBtn.addEventListener('click', function () {
   resetScore(grid3x3)
 })
 
-
-
 gameModeBtn.addEventListener('click', function () {
   clickSound.currentTime = 0.09
   clickSound.play()
   if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vs1') {
     modeModal.style.display = 'none'
     document.body.classList.add('glassmorphism')
+    document.querySelector('.players').style.display = 'flex'
     init()
     mode1v1Game(grid3x3)
-  } else {
   }
 })
 
@@ -90,9 +80,10 @@ gameModeBtn.addEventListener('click', function () {
   if (gameModePlaySelected === '1vsPC') {
     modeModal.style.display = 'none'
     document.body.classList.add('glassmorphism')
+    document.querySelector('.players').style.display = 'flex'
+    player2Img.src = './resources/player-picture_4.png'
+
     init()
     mode1vPC(grid3x3)
-  } else {
-    console.log(gameModeGrid3x3ClickCheck, gameModePlaySelected)
   }
 })

@@ -4,8 +4,11 @@ const mode1v1Game = function (grid) {
     if (e.key === 'Enter') {
       if (player1Input.value === '') {
         alert('You have to add a name')
+        player1Input.placeholder = 'You have to add a name'
       } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
         alert(`Enter full name`)
+        player1Input.value = ''
+        player1Input.placeholder = 'Enter full name'
       } else if (
         player1Input.value !== '' &&
         player1Input.value !== 'Ena Bejtic' &&

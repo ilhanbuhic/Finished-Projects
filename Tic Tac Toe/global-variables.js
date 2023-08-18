@@ -9,7 +9,7 @@ document.querySelector('.player2-input').classList.add('hidden')
 document.querySelector('.player2-input--name').classList.add('hidden')
 gameModeBtn.classList.add('hidden')
 
-document.querySelector('.players').classList.add('hidden')
+document.querySelector('.players').style.display = 'none'
 document.querySelector('.game-mode--play').classList.add('hidden')
 document.querySelector('.game-mode--difficulty').classList.add('hidden')
 resetScoreBtn.classList.add('hidden')

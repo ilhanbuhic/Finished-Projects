@@ -37,10 +37,14 @@ function mode1vPC(grid) {
         document.querySelector('.player1-input--name').classList.add('hidden')
         player1.classList.remove('active--player')
         game.classList.remove('hidden')
+        resetScoreBtn.classList.remove('hidden')
         currentPlayer = 'X'
         switchPlayer()
       } else {
         ena()
+        game.classList.remove('hidden')
+        resetScoreBtn.classList.remove('hidden')
+        player2InputName.remove('hidden')
       }
     }
   })
@@ -56,7 +60,7 @@ function mode1vPC(grid) {
           scores[0]++
           player1Score.textContent = `Score: ${scores[0]}`
           gameEnded = true
-          displayModal('X')
+          displayModal(player1Name.textContent)
           resetGame(grid)
         } else if (checkDraw(grid)) {
           displayModal()
@@ -69,7 +73,7 @@ function mode1vPC(grid) {
             scores[1]++
             player2Score.textContent = `Score: ${scores[1]}`
             gameEnded = true
-            displayModal('O')
+            displayModal('PC')
             resetGame(grid)
           } else if (checkDraw(grid)) {
             displayModal('Draw')
