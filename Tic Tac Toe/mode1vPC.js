@@ -28,10 +28,19 @@ function mode1vPC(grid) {
       } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
         alert(`Enter full name`)
       } else if (
-        player1Input.value !== '' &&
-        player1Input.value !== 'Ena Bejtic' &&
-        /^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)
+        player1Input.value.toLowerCase() === normalCase
+          ? checkForEna1(player1Input.value.toLowerCase()) === reversedCase
+          : checkForEna2(player1Input.value.toLowerCase()) === normalCase
       ) {
+        ena()
+        game.classList.remove('hidden')
+        resetScoreBtn.classList.remove('hidden')
+        player2InputName.remove('hidden')
+      } else {
+        console.log(
+          player1Input.value.toLowerCase() === reversedCase,
+          `${player1Input.value.toLowerCase()} -- ${reversedCase}`
+        )
         player1Name.textContent = player1Input.value
         document.querySelector('.player1-input').classList.add('hidden')
         document.querySelector('.player1-input--name').classList.add('hidden')
@@ -40,11 +49,6 @@ function mode1vPC(grid) {
         resetScoreBtn.classList.remove('hidden')
         currentPlayer = 'X'
         switchPlayer()
-      } else {
-        ena()
-        game.classList.remove('hidden')
-        resetScoreBtn.classList.remove('hidden')
-        player2InputName.remove('hidden')
       }
     }
   })
