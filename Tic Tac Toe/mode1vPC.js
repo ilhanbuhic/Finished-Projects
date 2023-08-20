@@ -29,25 +29,21 @@ function mode1vPC(grid) {
         alert(`Enter full name`)
       } else if (
         player1Input.value.toLowerCase() === normalCase
-          ? checkForEna1(player1Input.value.toLowerCase()) === reversedCase
-          : checkForEna2(player1Input.value.toLowerCase()) === normalCase
+          ? checkPer(player1Input.value.toLowerCase(), false) === normalCase
+          : checkPer(player1Input.value.toLowerCase(), true) === reversedCase
       ) {
-        ena()
+        spPer()
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
         player2InputName.remove('hidden')
+        currentPlayer = 'X'
       } else {
-        console.log(
-          player1Input.value.toLowerCase() === reversedCase,
-          `${player1Input.value.toLowerCase()} -- ${reversedCase}`
-        )
         player1Name.textContent = player1Input.value
-        document.querySelector('.player1-input').classList.add('hidden')
-        document.querySelector('.player1-input--name').classList.add('hidden')
-        player1.classList.remove('active--player')
+        player1Input.classList.add('hidden')
+        player1InputName.classList.add('hidden')
+        player1.classList.add('active--player')
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
-        currentPlayer = 'X'
         switchPlayer()
       }
     }
