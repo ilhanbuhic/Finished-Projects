@@ -19,6 +19,7 @@ function performComputerMove() {
 }
 
 function mode1vPC(grid) {
+  player1.classList.add('active--player')
   player2Name.textContent = 'PC'
   document.addEventListener('keyup', function (e) {
     e.preventDefault()
@@ -37,26 +38,33 @@ function mode1vPC(grid) {
         resetScoreBtn.classList.remove('hidden')
         player2InputName.remove('hidden')
         currentPlayer = 'X'
+        gridTextContentTriggerMode1vPC(grid, '❣️')
       } else {
         player1Name.textContent = player1Input.value
         player1Input.classList.add('hidden')
         player1InputName.classList.add('hidden')
-        player1.classList.add('active--player')
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
         switchPlayer()
+        gridTextContentTriggerMode1vPC(grid, 'X')
       }
     }
   })
+
+  // if (randomPlayer === 2) {
+  //   // PC moves first if randomPlayer equals 2
+  //   setTimeout(performComputerMove, 1000)
+  // }
+}
+
+const gridTextContentTriggerMode1vPC = function (grid, textContent) {
   resetGame(grid)
-  currentPlayer = 'X'
-  console.log(currentPlayer)
-  grid.forEach(function (gridEl, index) {
+  grid.forEach(function (gridEl) {
     gridEl.addEventListener('click', function () {
       if (!gridEl.textContent && !gameEnded) {
-        gridEl.textContent = 'X'
+        gridEl.textContent = textContent
 
-        if (checkWinner('X')) {
+        if (checkWinner(textContent)) {
           scores[0]++
           player1Score.textContent = `Score: ${scores[0]}`
           gameEnded = true
@@ -70,6 +78,8 @@ function mode1vPC(grid) {
           // setTimeout(performComputerMove, 1000) // PC moves right after player
           performComputerMove()
           if (checkWinner('O')) {
+            loseSound.currentTime = 0.0
+            loseSound.play()
             scores[1]++
             player2Score.textContent = `Score: ${scores[1]}`
             gameEnded = true
@@ -84,9 +94,4 @@ function mode1vPC(grid) {
       }
     })
   })
-
-  // if (randomPlayer === 2) {
-  //   // PC moves first if randomPlayer equals 2
-  //   setTimeout(performComputerMove, 1000)
-  // }
 }

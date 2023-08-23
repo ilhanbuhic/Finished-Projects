@@ -141,9 +141,7 @@
   transition: fadeIn 0.3s ease;
 }
 
-.dropdownFadeIn
-
-.game-mode--play,
+.dropdownFadeIn .game-mode--play,
 .game-mode--difficulty {
   margin-top: 3rem;
 }
