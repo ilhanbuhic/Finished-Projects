@@ -44,6 +44,9 @@ gameModeGrid3x3.addEventListener('click', function () {
 
 gameModePlayDP.addEventListener('change', function (event) {
   gameModePlaySelected = event.target.value
+  gameModeDifficultyDP.addEventListener('change', function (event) {
+    gameModeDifficultySelected = event.target.value
+  })
 
   if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vs1') {
     document.querySelector('.game-mode--difficulty').classList.add('hidden')
@@ -51,21 +54,6 @@ gameModePlayDP.addEventListener('change', function (event) {
   } else if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vsPC') {
     document.querySelector('.game-mode--difficulty').classList.remove('hidden')
     document.querySelector('.modal-content').style.height = '580px'
-    // gameModePlaySelected = '1vsPC'
-    console.log(gameModePlaySelected, gameModeDifficultySelected)
-  }
-})
-
-gameModeDifficultyDP.addEventListener('change', function (event) {
-  gameModeDifficultySelected = event.target.value
-
-  if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vs1') {
-    document.querySelector('.game-mode--difficulty').classList.add('hidden')
-    document.querySelector('.modal-content').style.height = '450px'
-  } else if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vsPC') {
-    document.querySelector('.game-mode--difficulty').classList.remove('hidden')
-    document.querySelector('.modal-content').style.height = '580px'
-    // gameModePlaySelected = '1vsPC'
     console.log(gameModePlaySelected, gameModeDifficultySelected)
   }
 })
@@ -90,6 +78,7 @@ gameModeBtn.addEventListener('click', function () {
     player2Img.src = './resources/player-picture_4.png'
     init()
     mode1vPC(grid3x3)
+    console.log(gameModePlaySelected, gameModeDifficultySelected)
   } else if (
     gameModePlaySelected === '1vsPC' &&
     gameModeDifficultySelected === 'hard'
@@ -99,37 +88,9 @@ gameModeBtn.addEventListener('click', function () {
     document.querySelector('.players').style.display = 'flex'
     player2Img.src = './resources/player-picture_4.png'
     init()
-    mode1vPCHard(grid3x3)
+    mode1vPC(grid3x3)
   }
 })
-
-// gameModeBtn.addEventListener('click', function () {
-//   clickSound.currentTime = 0.09
-//   clickSound.play()
-//   if (gameModePlaySelected === '1vsPC') {
-//     modeModal.style.display = 'none'
-//     document.body.classList.add('glassmorphism')
-//     document.querySelector('.players').style.display = 'flex'
-//     player2Img.src = './resources/player-picture_4.png'
-//     init()
-//     mode1vPC(grid3x3)
-//     console.log(gameModePlaySelected, gameModeDifficultySelected)
-//   }
-// })
-
-// gameModeBtn.addEventListener('click', function () {
-//   clickSound.currentTime = 0.09
-//   clickSound.play()
-//   if (gameModePlaySelected === '1vsPC') {
-//     modeModal.style.display = 'none'
-//     document.body.classList.add('glassmorphism')
-//     document.querySelector('.players').style.display = 'flex'
-//     player2Img.src = './resources/player-picture_4.png'
-//     init()
-//     mode1vPCHard(grid3x3)
-//     console.log(gameModePlaySelected, gameModeDifficultySelected)
-//   }
-// })
 
 restartBtn.addEventListener('click', function () {
   resetGame(grid3x3)

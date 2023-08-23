@@ -40,7 +40,6 @@ const spPer = function () {
       player1InputName.classList.add('hidden')
       document.querySelector('img[alt="player1-picture"]').src =
         './resources/IMG_4262.png'
-      console.log('tjt')
     }
   }
 }

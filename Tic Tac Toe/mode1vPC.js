@@ -1,3 +1,4 @@
+/* ---------- Easy mode ---------- */
 function getEmptyCells() {
   let emptyCells = []
   grid3x3.forEach((cell, index) => {
@@ -17,6 +18,61 @@ function performComputerMove() {
     clickSound.play()
   }
 }
+/* ---------- Easy mode ---------- */
+
+/* ---------- Hard mode ---------- */
+function minimax(board, depth, isMaximizing) {
+  const scores = {
+    X: -1,
+    O: 1,
+    draw: 0,
+  }
+
+  if (checkWinner('X')) {
+    return { score: scores.X - depth }
+  }
+  if (checkWinner('O')) {
+    return { score: scores.O + depth }
+  }
+  if (checkDraw()) {
+    return { score: scores.draw }
+  }
+
+  const emptyCells = getEmptyCells()
+
+  if (isMaximizing) {
+    let bestScore = -Infinity
+    let bestMove
+
+    for (const cellIndex of emptyCells) {
+      board[cellIndex].textContent = 'O'
+      const score = minimax(board, depth + 1, false).score
+      board[cellIndex].textContent = ''
+      if (score > bestScore) {
+        bestScore = score
+        bestMove = cellIndex
+      }
+    }
+
+    return { score: bestScore, index: bestMove }
+  } else {
+    let bestScore = Infinity
+    let bestMove
+
+    for (const cellIndex of emptyCells) {
+      board[cellIndex].textContent = 'X'
+      const score = minimax(board, depth + 1, true).score
+      board[cellIndex].textContent = '' // Undo the move
+      if (score < bestScore) {
+        bestScore = score
+        bestMove = cellIndex
+      }
+    }
+
+    return { score: bestScore, index: bestMove }
+  }
+}
+/* ---------- Hard mode ---------- */
 
 function mode1vPC(grid) {
   player1.classList.add('active--player')
@@ -55,43 +111,4 @@ function mode1vPC(grid) {
   //   // PC moves first if randomPlayer equals 2
   //   setTimeout(performComputerMove, 1000)
   // }
-}
-
-const gridTextContentTriggerMode1vPC = function (grid, textContent) {
-  resetGame(grid)
-  grid.forEach(function (gridEl) {
-    gridEl.addEventListener('click', function () {
-      if (!gridEl.textContent && !gameEnded) {
-        gridEl.textContent = textContent
-
-        if (checkWinner(textContent)) {
-          scores[0]++
-          player1Score.textContent = `Score: ${scores[0]}`
-          gameEnded = true
-          displayModal(player1Name.textContent)
-          resetGame(grid)
-        } else if (checkDraw(grid)) {
-          displayModal()
-          resetGame(grid)
-          gameEnded = true
-        } else {
-          // setTimeout(performComputerMove, 1000) // PC moves right after player
-          performComputerMove()
-          if (checkWinner('O')) {
-            loseSound.currentTime = 0.0
-            loseSound.play()
-            scores[1]++
-            player2Score.textContent = `Score: ${scores[1]}`
-            gameEnded = true
-            displayModal('PC')
-            resetGame(grid)
-          } else if (checkDraw(grid)) {
-            displayModal('Draw')
-            resetGame(grid)
-            gameEnded = true
-          }
-        }
-      }
-    })
-  })
 }
