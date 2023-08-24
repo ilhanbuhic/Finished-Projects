@@ -17,8 +17,11 @@
   margin-top: 5rem;
 }
 
-.player1-input::placeholder {
-  color: red;
+.player1-input::placeholder,
+.player2-input::placeholder {
+  /* color: 5A5A5A; */
+  color: #ff0000;
+  font-size: 15px;
 }
 
 .player1-input--name {
