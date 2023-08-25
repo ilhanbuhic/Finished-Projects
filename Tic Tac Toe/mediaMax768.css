@@ -43,6 +43,11 @@
     font-size: 1.4rem;
   }
 
+  .player1-input::placeholder,
+  .player2-input::placeholder {
+    font-size: 11.8px;
+  }
+
   .active--player {
     padding: 1rem;
     font-size: 1.5rem;
