@@ -32,7 +32,6 @@ gameModeGrid3x3.addEventListener('click', function () {
   clickSound.play()
   gameModeGrid3x3ClickCheck = true
   if (gameModeGrid3x3ClickCheck) {
-    console.log('Checked')
     document.querySelector('.game-mode--play').classList.remove('hidden')
     gameModeBtn.classList.remove('hidden')
     document.querySelector('.modal-content').style.height = '470px'
@@ -54,7 +53,6 @@ gameModePlayDP.addEventListener('change', function (event) {
   } else if (gameModeGrid3x3ClickCheck && gameModePlaySelected === '1vsPC') {
     document.querySelector('.game-mode--difficulty').classList.remove('hidden')
     document.querySelector('.modal-content').style.height = '580px'
-    console.log(gameModePlaySelected, gameModeDifficultySelected)
   }
 })
 
@@ -67,7 +65,6 @@ gameModeBtn.addEventListener('click', function () {
     document.querySelector('.players').style.display = 'flex'
     init()
     mode1v1Game(grid3x3)
-    console.log(gameModePlaySelected)
   } else if (
     gameModePlaySelected === '1vsPC' &&
     gameModeDifficultySelected === 'easy'
@@ -78,7 +75,6 @@ gameModeBtn.addEventListener('click', function () {
     player2Img.src = './resources/player-picture_4.png'
     init()
     mode1vPC(grid3x3)
-    console.log(gameModePlaySelected, gameModeDifficultySelected)
   } else if (
     gameModePlaySelected === '1vsPC' &&
     gameModeDifficultySelected === 'hard'

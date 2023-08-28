@@ -5,7 +5,7 @@ let scores
 let checkPlayerFillInputs = false
 
 player2Input.classList.add('hidden')
-document.querySelector('.player2-input--name').classList.add('hidden')
+player2InputName.classList.add('hidden')
 gameModeBtn.classList.add('hidden')
 
 document.querySelector('.players').style.display = 'none'
