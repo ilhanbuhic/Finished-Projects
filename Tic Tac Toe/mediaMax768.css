@@ -3,6 +3,10 @@
     height: auto;
   }
 
+  .overlay {
+    height: 100vh;
+  }
+
   label[for='name'] {
     text-align: center;
     /* margin-left: 20%; */

@@ -4,6 +4,10 @@
     padding: 4rem;
   }
 
+  .overlay {
+    height: 100vh;
+  }
+
   .modalP {
     font-size: 3rem;
   }

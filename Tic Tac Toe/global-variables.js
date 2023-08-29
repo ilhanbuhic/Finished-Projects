@@ -15,7 +15,7 @@ resetScoreBtn.classList.add('hidden')
 
 grid3x3.forEach(gridEl => {
   gridEl.addEventListener('click', function () {
-    clickSound.currentTime = 0.09
+    clickSound.currentTime = 0.05
     clickSound.play()
   })
 })

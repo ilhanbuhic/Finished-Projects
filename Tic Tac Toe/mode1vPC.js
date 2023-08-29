@@ -31,10 +31,10 @@ function mode1vPC(grid) {
         currentPlayer = 'X'
         gridTextContentTriggerMode1vPC(grid, '❣️')
       } else if (player1Input.value === '') {
-        player1Input.placeholder = 'You have to add a name'
+        player1Input.placeholder = 'Morate dodati ime'
       } else if (!/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player1Input.value)) {
         player1Input.value = ''
-        player1Input.placeholder = 'Enter full name'
+        player1Input.placeholder = 'Unesite ime i prezime'
       } else {
         player1Name.textContent = player1Input.value
         player1Input.classList.add('hidden')
