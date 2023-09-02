@@ -31,4 +31,3 @@ const spPer = function (playerNumber, img) {
     }
   }
 }
-// test
