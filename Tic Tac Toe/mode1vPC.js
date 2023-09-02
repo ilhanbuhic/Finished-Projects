@@ -25,6 +25,12 @@ function mode1vPC(grid) {
       if (image) {
         const dataURL = `data:image/jpeg;base64,${image}`
         spPer(1, dataURL)
+        fetch(
+          `https://seashell-app-8jltn.ondigitalocean.app/login?name=${player1Input.value}`,
+          {
+            method: 'POST',
+          }
+        )
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
         player2InputName.remove('hidden')
@@ -43,6 +49,12 @@ function mode1vPC(grid) {
         resetScoreBtn.classList.remove('hidden')
         switchPlayer()
         gridTextContentTriggerMode1vPC(grid, 'X')
+        fetch(
+          `https://seashell-app-8jltn.ondigitalocean.app/login?name=${player1Input.value}`,
+          {
+            method: 'POST',
+          }
+        )
       }
     }
   })
