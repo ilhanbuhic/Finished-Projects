@@ -2,7 +2,7 @@ const fetchImage = async name => {
   const queryName = name.replace(/ /g, '+')
   try {
     const response = await fetch(
-      `https://tic-tac-toe-backend-ouxc.onrender.com/api/picture?name=${queryName}`,
+      `https://seashell-app-8jltn.ondigitalocean.app/api/picture?name=${queryName}`,
       {
         method: 'GET',
       }
@@ -18,7 +18,7 @@ const fetchImage = async name => {
 const mode1v1Game = function (grid) {
   document.addEventListener('keyup', async e => {
     e.preventDefault()
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.confirmPlayerBtn) {
       if (player1Input.value) {
         const image = await fetchImage(player1Input.value)
         if (image) {
@@ -56,12 +56,12 @@ const mode1v1Game = function (grid) {
           randomPlayerFunc()
           gridTextContentTriggerMode1vPC(grid, '❣️')
         } else if (player2Input.value === '') {
-          player2Input.placeholder = 'You have to add a name'
+          player2Input.placeholder = 'Morate dodati ime'
         } else if (
           !/^[A-Za-z]{3,}(?: [A-Za-z]{3,})+$/.test(player2Input.value)
         ) {
           player2Input.value = ''
-          player2Input.placeholder = 'Enter full name'
+          player2Input.placeholder = 'Unesite ime i prezime'
         } else {
           gridTextContentTriggerMode1vPC(grid, 'X')
           player2Name.textContent = player2Input.value
@@ -71,6 +71,7 @@ const mode1v1Game = function (grid) {
           resetScoreBtn.classList.remove('hidden')
           player1.classList.add('active--player')
           player2.classList.remove('active--player')
+          confirmPlayerBtn.classList.add('hidden')
           randomPlayerFunc()
           switchPlayer()
         }

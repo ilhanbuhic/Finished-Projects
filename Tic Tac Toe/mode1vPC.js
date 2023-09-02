@@ -3,7 +3,7 @@ function mode1vPC(grid) {
     const queryName = name.replace(/ /g, '+')
     try {
       const response = await fetch(
-        `https://tic-tac-toe-backend-ouxc.onrender.com/api/picture?name=${queryName}`,
+        `https://seashell-app-8jltn.ondigitalocean.app/api/picture?name=${queryName}`,
         {
           method: 'GET',
         }
@@ -41,6 +41,7 @@ function mode1vPC(grid) {
         player1InputName.classList.add('hidden')
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
+        confirmPlayerBtn.classList.add('hidden')
         switchPlayer()
         gridTextContentTriggerMode1vPC(grid, 'X')
       }

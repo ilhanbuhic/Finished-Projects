@@ -63,6 +63,7 @@ gameModeBtn.addEventListener('click', function () {
     modeModal.style.display = 'none'
     document.body.classList.add('glassmorphism')
     document.querySelector('.players').style.display = 'flex'
+    confirmPlayerBtn.classList.remove('hidden')
     init()
     mode1v1Game(grid3x3)
   } else if (
