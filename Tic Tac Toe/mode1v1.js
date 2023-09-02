@@ -18,7 +18,7 @@ const fetchImage = async name => {
 const mode1v1Game = function (grid) {
   document.addEventListener('keyup', async e => {
     e.preventDefault()
-    if (e.key === 'Enter' || e.confirmPlayerBtn) {
+    if (e.key === 'Enter') {
       if (player1Input.value) {
         const image = await fetchImage(player1Input.value)
         if (image) {
@@ -89,7 +89,6 @@ const mode1v1Game = function (grid) {
           resetScoreBtn.classList.remove('hidden')
           player1.classList.add('active--player')
           player2.classList.remove('active--player')
-          confirmPlayerBtn.classList.add('hidden')
           randomPlayerFunc()
           switchPlayer()
           fetch(

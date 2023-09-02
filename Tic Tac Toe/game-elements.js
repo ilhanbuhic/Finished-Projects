@@ -6,5 +6,3 @@ let restartBtn = document.querySelector('.restart-button')
 let resetScoreBtn = document.querySelector('.reset-score--button')
 let gameModeBtn = document.querySelector('.gameMode-btn')
 /* ------ GRID SELECTOR ------ */
-// console.log(confirmPlayerBtn.classList.add('hidden'))
-// console.log(confirmPlayerBtn.classList)

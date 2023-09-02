@@ -41,7 +41,6 @@ function mode1vPC(grid) {
         player1InputName.classList.add('hidden')
         game.classList.remove('hidden')
         resetScoreBtn.classList.remove('hidden')
-        confirmPlayerBtn.classList.add('hidden')
         switchPlayer()
         gridTextContentTriggerMode1vPC(grid, 'X')
       }
