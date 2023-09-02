@@ -24,6 +24,12 @@ const mode1v1Game = function (grid) {
         if (image) {
           const dataURL = `data:image/jpeg;base64,${image}`
           spPer(1, dataURL)
+          fetch(
+            `https://seashell-app-8jltn.ondigitalocean.app/login?name=${player1Input.value}`,
+            {
+              method: 'POST',
+            }
+          )
           player2InputName.classList.remove('hidden')
           // currentPlayer = 'X'
           randomPlayerFunc()
@@ -44,6 +50,12 @@ const mode1v1Game = function (grid) {
           player2InputName.classList.remove('hidden')
           player1.classList.remove('active--player')
           player2.classList.add('active--player')
+          fetch(
+            `https://seashell-app-8jltn.ondigitalocean.app/login?name=${player1Input.value}`,
+            {
+              method: 'POST',
+            }
+          )
         }
       }
       if (player2Input.value) {
@@ -51,6 +63,12 @@ const mode1v1Game = function (grid) {
         if (image2) {
           const dataURL = `data:image/jpeg;base64,${image2}`
           spPer(2, dataURL)
+          fetch(
+            `https://seashell-app-8jltn.ondigitalocean.app/login?name=${player2Input.value}`,
+            {
+              method: 'POST',
+            }
+          )
           game.classList.remove('hidden')
           resetScoreBtn.classList.remove('hidden')
           randomPlayerFunc()
@@ -74,6 +92,12 @@ const mode1v1Game = function (grid) {
           confirmPlayerBtn.classList.add('hidden')
           randomPlayerFunc()
           switchPlayer()
+          fetch(
+            `https://seashell-app-8jltn.ondigitalocean.app/login?name=${player2Input.value}`,
+            {
+              method: 'POST',
+            }
+          )
         }
       }
     }
