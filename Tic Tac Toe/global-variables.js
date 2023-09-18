@@ -2,7 +2,6 @@ let currentPlayer
 let randomPlayer
 let gameEnded
 let scores
-let checkPlayerFillInputs = false
 
 player2Input.classList.add('hidden')
 player2InputName.classList.add('hidden')
