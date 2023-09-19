@@ -1,12 +1,13 @@
-//Selectors
+// Selectors
 const todoInput = document.querySelector(".todo-input")
 const todoButton = document.querySelector(".todo-button")
 const todoList = document.querySelector(".todo-list")
 
-//Event Listeners
+// Event Listeners
 todoButton.addEventListener("click", addTodo)
+todoList.addEventListener('click', checkDelete)
 
-//Functions
+// Functions
 function addTodo(event) {
   // Prevent form from submitting
   event.preventDefault()
@@ -17,13 +18,13 @@ function addTodo(event) {
 
   // Create LI
   const newTodo = document.createElement("li")
-  newTodo.innerText = "hey"
-  newTodo.classList.add("new-item")
+  newTodo.innerText = todoInput.value
+  newTodo.classList.add("todo-item")
   todoDiv.appendChild(newTodo)
 
   // Check Button
   const completedButton = document.createElement("button")
-  completedButton.classList.add("completed-btn")
+  completedButton.classList.add("complete-btn")
   completedButton.innerHTML = '<i class = "fas fa-check"></i>'
   todoDiv.appendChild(completedButton)
 
@@ -34,4 +35,7 @@ function addTodo(event) {
   todoDiv.appendChild(trashButton)
   // Append to list
   todoList.appendChild(todoDiv)
+  
+  // Clear todo INPUT VALUE
+  todoInput.value = '' 
 }
