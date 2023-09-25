@@ -43,14 +43,18 @@ function addTodo(e) {
 function checkDelete(e) {
   const item = e.target
   // Delete todo
-  if(item.classList[0] === 'trash-btn') {
+  if (item.classList[0] === "trash-btn") {
     const todo = item.parentElement
-    todo.remove()
+    //Animation
+    todo.classList.add('fall')
+    todo.addEventListener('transitionend', function() {
+      todo.remove()
+    })
   }
 
   // Check todo
-  if (item.classList[0] === 'complete-btn') {
+  if (item.classList[0] === "complete-btn") {
     const todo = item.parentElement
-    todo.classList.toggle('completed')
+    todo.classList.toggle("completed")
   }
 }
