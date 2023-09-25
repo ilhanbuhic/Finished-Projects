@@ -62,7 +62,7 @@ form button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .todo li {
@@ -119,9 +119,15 @@ select {
   color: #ff6f47;
   width: 10rem;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .select::after {
-  content: "25BC"
-  
+  content: "\25BC";
+  position: absolute;
+  background: #ff6f47;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  pointer-events: none;
 }
