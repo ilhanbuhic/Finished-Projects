@@ -58,5 +58,3 @@ function checkDelete(e) {
     todo.classList.toggle("completed")
   }
 }
-
-//cloning to macos test
