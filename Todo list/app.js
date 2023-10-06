@@ -104,3 +104,33 @@ function saveLocalTodos(todo) {
   // Pushing back to localStorage
   localStorage.setItem('todos', JSON.stringify(todos))
 }
+
+function getTodos() {
+  console.log('nesto');
+  let todos
+  if (localStorage.getItem('todos') === null) {
+    todos = []
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'))
+  }
+  todos.forEach(function (todo) {
+  const todoDiv = document.createElement('div')
+  todoDiv.classList.add('todo')
+
+  const newTodo = document.createElement('li')
+  newTodo.innerText = todo
+  newTodo.classList.add('todo-item')
+  todoDiv.appendChild(newTodo)
+
+  const completedButton = document.createElement('button')
+  completedButton.classList.add('complete-btn')
+  completedButton.innerHTML = '<i class = "fas fa-check"></i>'
+  todoDiv.appendChild(completedButton)
+
+  const trashButton = document.createElement('button')
+  trashButton.classList.add('trash-btn')
+  trashButton.innerHTML = '<i class = "fas fa-trash"></i>'
+  todoDiv.appendChild(trashButton)
+  })
+}
+// localStorage.clear()
