@@ -1,6 +1,6 @@
 .carousel {
     max-width: 600px;
-    position: relative;
+    /* position: relative; */
     position: absolute;
     top: 50%;
     left: 50%;
