@@ -7,7 +7,6 @@ ulTag.className = 'users'
 usersDiv.appendChild(ulTag)
 
 const users = {
-  //   user1: 'a',
   user1: { firstName: 'Ilhan' },
   user2: { firstName: 'Carl' },
   user3: { firstName: 'Lupe' },
@@ -17,6 +16,7 @@ const users = {
   user7: { firstName: 'Fred' },
   user8: { firstName: 'Chris' },
   user9: { firstName: 'Per' },
+  user10: { firstName: 'Tajra' },
 }
 
 for (let [key, user] of Object.entries(users)) {
