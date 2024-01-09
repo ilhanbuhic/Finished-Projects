@@ -27,3 +27,21 @@ for (let [key, user] of Object.entries(users)) {
     liTag.className = key
   }
 }
+
+document
+  .getElementById('search-input')
+  .addEventListener('keyup', function (event) {
+    let allNameDOMCollection = document.querySelectorAll('.firstName')
+    let searchQuery = event.target.value.toLowerCase()
+
+    for (let counter = 0; counter < allNameDOMCollection.length; counter++) {
+      const currentName =
+        allNameDOMCollection[counter].textContent.toLowerCase()
+
+      if (currentName.includes(searchQuery)) {
+        allNameDOMCollection[counter].style.display = 'block'
+      } else {
+        allNameDOMCollection[counter].style.display = 'none'
+      }
+    }
+  })
