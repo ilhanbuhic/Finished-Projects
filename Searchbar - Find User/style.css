@@ -2,7 +2,6 @@
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
     box-sizing: border-box;
 }
-
 html,
 body {
     margin: 0;
@@ -28,12 +27,12 @@ body {
     margin-right: 15px;
 }
 
-#results {
+.users {
     display: block;
     padding: 10px;
 }
 
-#results .name {
+.users .firstName {
     width: 100%;
     padding: 10px 0;
     text-align: center;
