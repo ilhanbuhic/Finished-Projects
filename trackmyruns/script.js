@@ -266,5 +266,5 @@ class App {
     form.insertAdjacentHTML('afterend', html)
   }
 }
-``
+;``
 const app = new App()
