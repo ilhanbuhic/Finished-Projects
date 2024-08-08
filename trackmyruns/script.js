@@ -300,8 +300,12 @@ class App {
 
     if (!data) return
     this.#workouts = data
-
     this.#workouts.forEach((workout) => this._renderWorkout(workout))
+  }
+
+  reset() {
+    localStorage.removeItem('workouts')
+    location.reload()
   }
 }
 const app = new App()
