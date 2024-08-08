@@ -283,8 +283,8 @@ class App {
     this.#map.setView(workout.coords, 15, {
       animate: true,
       pan: {
-        duration: 1
-      }
+        duration: 1,
+      },
     })
   }
 }
