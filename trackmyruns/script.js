@@ -83,13 +83,9 @@ class App {
     // Get user's position
     this._getPosition()
 
-    // Get data from local storage
-    this._getLocalStorage()
-
     // Attach event handlers
     form.addEventListener('submit', this._newWorkout.bind(this))
     inputType.addEventListener('change', this._toggleElevationField)
-    containerWorkouts.addEventListener('click', this._moveToPopup.bind(this))
   }
 
   _getPosition() {
@@ -110,7 +106,8 @@ class App {
 
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel)
 
-    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map)
@@ -127,6 +124,19 @@ class App {
     this.#mapEvent = mapE
     form.classList.remove('hidden')
     inputDistance.focus()
+  }
+
+  _hideForm() {
+    // Empty inputs
+    inputDistance.value =
+      inputDuration.value =
+      inputCadence.value =
+      inputElevation.value =
+        ''
+
+    form.style.display = 'none'
+    form.classList.add('hidden')
+    setTimeout(() => form.styl.display = 'grid', 1000)
   }
 
   _toggleElevationField() {
@@ -189,12 +199,6 @@ class App {
 
     // Set local storage to all workouts
     this._setLocalStorage()
-
-    inputDistance.value =
-      inputDuration.value =
-      inputCadence.value =
-      inputElevation.value =
-        ''
   }
 
   _renderWorkoutMarker(workout) {
