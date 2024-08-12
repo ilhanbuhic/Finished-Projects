@@ -100,7 +100,7 @@ class App {
           this._loadMap(position)
         },
         (error) => {
-          reject(error)
+          reject(new Error(error, 'Unable to determine location'))
           console.error('Could not get your position')
         }
       )
