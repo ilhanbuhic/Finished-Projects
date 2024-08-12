@@ -81,7 +81,7 @@ class App {
 
   constructor() {
     // Get user's position
-    this._getPosition()
+    this._getPosition().catch((error) => error.message)
 
     // Get data from local storage
     this._getLocalStorage()
@@ -93,13 +93,18 @@ class App {
   }
 
   _getPosition() {
-    if (navigator.geolocation)
+    return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
-        this._loadMap.bind(this),
-        function () {
-          alert('Could not get your position')
+        (position) => {
+          resolve(position)
+          this._loadMap(position)
+        },
+        (error) => {
+          reject(error)
+          console.error('Could not get your position')
         }
       )
+    })
   }
 
   _loadMap(position) {
